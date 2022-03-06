@@ -28,20 +28,46 @@
             background: -moz-linear-gradient(to right, #959595 0%, #0D0D0D 46%, #010101 50%, #0A0A0A 53%, #4E4E4E 76%, #383838 87%, #1B1B1B 100%);
             background: linear-gradient(to right, #959595 0%, #0D0D0D 46%, #010101 50%, #0A0A0A 53%, #4E4E4E 76%, #383838 87%, #1B1B1B 100%);
         }
+
+        .resaltar:hover {
+            -webkit-box-shadow: 4px -4px 15px 0px #FF1F1F, 12px -11px 7px 0px #FF9376, 20px -5px 7px 0px #FFE264, 20px 6px 7px 0px #F6FF33, 13px 12px 17px 0px #FF9527, 2px 17px 17px 0px #FF0000, -9px 21px 18px 0px #FFF212, -9px 6px 11px 0px #FF0808, -11px -9px 11px 0px #FFFA17, -11px -9px 11px 0px #FFFA17, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+            box-shadow: 4px -4px 15px 0px #FF1F1F, 12px -11px 7px 0px #FF9376, 20px -5px 7px 0px #FFE264, 20px 6px 7px 0px #F6FF33, 13px 12px 17px 0px #FF9527, 2px 17px 17px 0px #FF0000, -9px 21px 18px 0px #FFF212, -9px 6px 11px 0px #FF0808, -11px -9px 11px 0px #FFFA17, -11px -9px 11px 0px #FFFA17, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+        }
+
+        .rotando:hover {
+            -moz-transform: scale(1.3) rotate(3deg);
+            -webkit-transform: scale(1.3) rotate(3deg);
+            -o-transform: scale(1.3) rotate(3deg);
+            -ms-transform: scale(1.3) rotate(3deg);
+            transform: scale(1.3) rotate(3deg);
+        }
+        .elinvTit{
+            color: #FFFFFF;
+            background: #232323;
+            text-shadow: 0 0 5px #FFF, 0 0 10px #FFF, 0 0 15px #FFF, 0 0 20px #49ff18, 0 0 30px #49FF18, 0 0 40px #49FF18, 0 0 55px #49FF18, 0 0 75px #49ff18;
+        }
     </style>
 </head>
 
 <body class="clsbody">
-        <!--Certificado Elinv-->
-        <img style="position: absolute; top: 0; left: 0; border: 0;z-index: 4;" src="./img/elinvycloudflare.png"
-        alt="Certificado calidad elinv">
+    <!--Certificado Elinv-->
+    <img style="position: absolute; top: 0; left: 0; border: 0;z-index: 4;" src="./img/elinvycloudflare.png"
+        alt="Certificado calidad elinv" title="Certificado calidad elinv">
     <article class="col-md-12">
         <!-- -->
-        <header style="color: #959595;"></footer>
-            <h1>Elinv</h1>
+        <header style="color: #959595;">
+            </footer>
+            <h1 class="elinvTit">Elinv</h1>
         </header>
         <!-- -->
-        <h2 style="color: #959595;">Que decir...</h2>
+        <h2 style="color: #959595;">
+            <a class="resaltar" href="./Web-Form-Creator/" target="_blank"
+                title="Ir al Creador de vista inicial de formulario y html control">
+                <img class="rotando" src="./Web-Form-Creator/img/DesignFormElinv.png"
+                    alt="Creador de vista inicial de formulario y html control"
+                    title="Creador de vista inicial de formulario y html control">
+            </a>
+        </h2>
         <div class="cards-3 section-gray">
             <div class="container">
                 <div class="row">
@@ -95,7 +121,7 @@
         </div>
 
         <!-- Perfil -->
-        <h3  style="color: #959595;">Existe un límite, pero hasta entonces...</h3>
+        <h3 style="color: #959595;">Existe un límite, pero hasta entonces...</h3>
         <div class="cards-5 section-gray">
             <div class="container">
                 <div class="row">
@@ -212,7 +238,7 @@
         </div>
 
         <!-- Testimonial -->
-        <h3  style="color: #959595;">Mi testimonio</h3>
+        <h3 style="color: #959595;">Mi testimonio</h3>
         <div class="cards-4 section-gray">
             <div class="container">
                 <div class="row">
