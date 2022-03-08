@@ -466,7 +466,6 @@ function crearInputs(params) {
     // html que insertaremos
     let id = randId();
     let tipo = $('#opcionesDialCrearInputs option:selected').val();
-    //alert(tipo);
 
     let evento = $('#asignarEventoCrearInputs option:selected').val();
     let frag = `<input class="form-control ${$('#estiloCrearInputs').val()}" style="margin:0px auto; display:block; width:${$('#anchoInput').val()}px;" type="${tipo}" id="${id}" name="${id}" placeholder="${$('#textoInput').val()}" value="${$('#textoInput').val()}" ${evento}="null" />`.toDOM();
@@ -747,6 +746,86 @@ function crearImageSvgFigure(params) {
 
     // lo agregamos al area de trabajo
     document.getElementById("contenedor1").appendChild(frag);
+
+    // lo hacemos arrastrable con jquery solamente
+    $("#" + id).draggable({ addClasses: false });
+    // le agregamos estilo
+    $("#" + id).addClass("claseArrastrable");
+
+    // incluimos evento para edición doble click pc
+    $("#" + id).bind('dblclick', function () {
+        //$("#" + id).remove();
+        // assign the current id to the modal
+        $('#confirDelete').data('id', id).modal('show');
+    });
+
+    // doble click en telefonos
+    var tapped = false
+    $("#" + id).on("touchstart", function (e) {
+        if (!tapped) {
+            tapped = setTimeout(function () {
+                //single_tap()
+                tapped = null
+            }, 300); //wait 300ms
+        } else {
+            clearTimeout(tapped);
+            tapped = null
+            $('#confirDelete').data('id', id).modal('show');
+        }
+        e.preventDefault()
+    });
+
+}
+/**------------------------------------------------------------ */
+
+
+
+
+/**------------------------------------------------------------ 
+ * FUNCION PARA LA CREACIÓN DE UN CONTROL DE IMAGE|SVG|FIGURE DESDE EL CUADRO DE DIALOGO */
+ function crearSelectDatalist(params) {
+    let control, ancho, alto, frag;
+    // tipo de control
+    control = $('#opcionesselectDatalist option:selected').val();
+    // html que insertaremos
+    let id = randId();
+    // de acuerdo al tipo de control -Si es Video
+    let labelAdd = "";
+    if (control == 'Select') {
+        // Si agregará el label
+        if ($('#incluirLabel').is(':checked')==true){
+            labelAdd = `<label for="autos">Elija su auto:</label>`;
+        }
+        // agregamos el fragmento
+        frag = `<div id="${id}" style="margin: auto;">
+            ${labelAdd}
+            <select name="autos" id="autos" class="form-select form-select-sm">  
+            <option value="ford">Ford</option><option value="fiat">Fiat</option><option value="mercedes Benz">Mercedes Benz</option><option value="audi">Audi</option></select></div>`.toDOM();
+    }
+    // de acuerdo al tipo de control -Si es Video
+     if (control == 'Datalist_Text') {
+         // fragmento de código a agregar
+         frag = `<div id="${id}" style="margin: auto;"><input type="text" id="${id}" name="${id}" list="lenguajes"/>
+            <datalist id="lenguajes" class="form-select form-select-sm"><option value="JavaScript"></option><option value="Python"></option><option value="Java"></option><option value="HTML">Stop being a troll</option></datalist></div>`.toDOM();
+    }
+    // de acuerdo al tipo de control -Si es Video
+    if (control == 'Datalist_Color') {
+        // Si agregará el label
+        if ($('#incluirLabel').is(':checked')==true){
+            labelAdd = `<label for="autos">Elija color:</label>`;
+        }        
+        // fragmento de código a agregar
+        frag = `<div id="${id}" style="margin: auto;">
+            ${labelAdd}
+            <input type="color" id="pick_color" list="colors"/><datalist id="colors" class="form-select form-select-sm"><option value="#155AF0"></option><option value="#F107BA"></option><option value="#2B2B2B"></option></datalist></div>`.toDOM();
+    }
+
+    // lo agregamos al area de trabajo
+    document.getElementById("contenedor1").appendChild(frag);
+
+    // establecemos el max-width del inputs
+    let inputsElement = document.getElementById(id);
+    inputsElement.style.width = '240px';
 
     // lo hacemos arrastrable con jquery solamente
     $("#" + id).draggable({ addClasses: false });

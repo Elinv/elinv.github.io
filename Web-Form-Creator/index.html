@@ -35,15 +35,17 @@
                         style="position: relative; top: -398px; left: 3px;">
                     <div id="zvrdn" style="margin: auto; width: 60px; position: relative; top: -793px; left: 1px;">
                         <button type="button" id="Id_Boton" name="Name_Boton" title="Presione aquí para cancelar!"
-                            class="btn btn-primary">Elinv</button></div>
+                            class="btn btn-primary">Elinv</button>
+                    </div>
                     <div id="qswuets" style="margin: auto; width: 248px; position: relative; top: -463px; left: 5px;">
                         <button type="button" id="Id_Boton" name="Name_Boton" title="Presione aquí para cancelar!"
-                            class="btn btn-primary">No tienes Javascript habilitado.</button></div>
+                            class="btn btn-primary">No tienes Javascript habilitado.</button>
+                    </div>
                 </div>
             </div>
         </div>
     </noscript>
-    
+
     <div style="padding-top: 30px;"></div>
 
     <div class="text-center">
@@ -99,6 +101,11 @@
                     <span class="badge badge-dark">7</span> Imagen|svg|figure
                 </a>
 
+                <a class="btn btn-primary open-AddBookDialog" style="margin-top: 5px;" data-toggle="modal"
+                    data-target="#crearSelectDatalist" title="Crear elementos tipo Image|svg|figure">
+                    <span class="badge badge-success">8</span> Select | Datalist
+                </a>
+
             </div>
         </div>
 
@@ -109,17 +116,12 @@
             <!-- Acción para crear botones tipos => Button, Reset, Submit -->
             <div class="dropdown-menu" style="padding-left: 5px; width: 240px; background: transparent;">
                 <a class="btn btn-primary open-AddBookDialog"
-                    href="https://www.elinv.musica.ar/Web-Form-Creator/" 
-                    title="Esta función esta habilitada solamente en su pagina original!"
-                    target="_blank">
-                    <span class="badge badge-success">1</span> Para usar... Exportar Formulario
+                    title="Exportar el formulario creando un modelo del mismo." onclick="exportFormulario();">
+                    <span class="badge badge-success">1</span> Exportar Formulario
                 </a>
-                <a class="btn btn-primary open-AddBookDialog" 
-                    href="https://www.elinv.musica.ar/Web-Form-Creator/" 
-                    title="Esta función esta habilitada solamente en su pagina original!"
-                    target="_blank"                
-                    style="margin-top: 5px;">
-                    <span class="badge badge-success">2</span> Para usar... Ver formularios
+                <a class="btn btn-primary open-AddBookDialog" title="Ver totalidad de formularios creados."
+                    onclick="window.open('./formCreados/listForm.php', '_blank');;" style="margin-top: 5px;">
+                    <span class="badge badge-success">2</span> Ver formularios
                 </a>
             </div>
         </div>
@@ -145,7 +147,49 @@
         </div>
     </div>
 
-    <!-- DIALOGO MODAL CREADOR MEDIA => opcionesDialCrearMedia
+
+    <!-- DIALOGO MODAL CREADOR SELECT | DATALIST TEXTO | DATALIST COLOR => crearSelectDatalist
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearSelectDatalist" tabindex="0" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+                    <label for="opcionesselectDatalist" class="text-primary">
+                        Crear control del tipo Select | Datalist Text | Datalist Color:
+                    </label>
+
+                    <select id="opcionesselectDatalist" class="browser-default custom-select">
+                        <option value="Select">Select</option>
+                        <option value="Datalist_Text">Datalist Text</option>
+                        <option value="Datalist_Color">Datalist Color</option>
+                    </select>
+
+                    <label for="incluirLabel" class="text-primary">
+                        Incluir label?
+                    </label>
+
+                    <input class="form-control text-primary" type="checkbox" id="incluirLabel" name="incluirLabel"
+                        placeholder="Pregunta: Incluir label?" style="width: 50px; margin: auto;">
+
+                    <input type="hidden" id="idContenedorSelectDatalistHidden" name="botonHidden" value="">
+
+                </div>
+                <div class="modal-footer">
+                    <button id="idCrearSelectDatalist" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="crearSelectDatalist()">
+                        Crear
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+
+    <!-- DIALOGO MODAL CREADOR MEDIA => opcionesDialCrearImageSvgFigure
         ------------------------------------------------------------ -->
     <div class="modal fade" id="crearImageSvgFigure" tabindex="0" role="dialog">
         <div class="modal-dialog" role="document">
@@ -316,6 +360,14 @@
                         <option value="text-dark">Text dark</option>
                         <option value="text-muted">Text muted</option>
                         <option value="text-white bg-dark">text-white bg-dark</option>
+                        <option value="badge rounded-pill bg-primary">badge bg-primary</span>
+                        <option value="badge rounded-pill bg-secondary">badge bg-secondary</span>
+                        <option value="badge rounded-pill bg-success">badge bg-success</span>
+                        <option value="badge rounded-pill bg-danger">badge bg-danger</span>
+                        <option value="badge rounded-pill bg-warning">badge bg-warning</span>
+                        <option value="badge rounded-pill bg-info">badge bg-info</span>
+                        <option value="badge rounded-pill bg-light">badge bg-light</span>
+                        <option value="badge rounded-pill bg-dark">badge bg-dark</span>
                     </select>
                     <input type="hidden" id="idContenedorInputsHidden" name="botonHidden" value="">
 
@@ -399,6 +451,14 @@
                         <option value="text-dark">Text dark</option>
                         <option value="text-muted">Text muted</option>
                         <option value="text-white bg-dark">text-white bg-dark</option>
+                        <option value="badge rounded-pill bg-primary">badge bg-primary</span>
+                        <option value="badge rounded-pill bg-secondary">badge bg-secondary</span>
+                        <option value="badge rounded-pill bg-success">badge bg-success</span>
+                        <option value="badge rounded-pill bg-danger">badge bg-danger</span>
+                        <option value="badge rounded-pill bg-warning">badge bg-warning</span>
+                        <option value="badge rounded-pill bg-info">badge bg-info</span>
+                        <option value="badge rounded-pill bg-light">badge bg-light</span>
+                        <option value="badge rounded-pill bg-dark">badge bg-dark</span>
                     </select>
 
                 </div>
@@ -553,6 +613,14 @@
                         <option value="btn-light">Light</option>
                         <option value="btn-dark">Dark</option>
                         <option value="btn-link">Link</option>
+                        <option value="badge rounded-pill bg-primary">badge bg-primary</span>
+                        <option value="badge rounded-pill bg-secondary">badge bg-secondary</span>
+                        <option value="badge rounded-pill bg-success">badge bg-success</span>
+                        <option value="badge rounded-pill bg-danger">badge bg-danger</span>
+                        <option value="badge rounded-pill bg-warning">badge bg-warning</span>
+                        <option value="badge rounded-pill bg-info">badge bg-info</span>
+                        <option value="badge rounded-pill bg-light">badge bg-light</span>
+                        <option value="badge rounded-pill bg-dark">badge bg-dark</span>
                     </select>
 
                     <select id="SelectButtonType" name="SelectButtonType" aria-label="Select_button_type"
@@ -608,7 +676,7 @@
     </div>
     <!-- ----------------------------------------------------------- -->
 
-    <!-- PRUEBA ELINV -->    
+    <!-- PRUEBA ELINV -->
     <!-- ----------------------------------------------------------- -->
     <div class="mx-auto wrapper" id="pruebaElinv">
         <header>Una pequeña prueba!</header>
@@ -620,7 +688,8 @@
             <button class="reload-btn" title="Refresca lo que observas."><i class="fas fa-redo-alt"></i></button>
         </div>
         <form action="#" class="input-area">
-            <input type="text" placeholder="Ingresa letras y números que ves!" maxlength="6" spellcheck="false" required>
+            <input type="text" placeholder="Ingresa letras y números que ves!" maxlength="6" spellcheck="false"
+                required>
             <button class="check-btn">Check</button>
         </form>
         <div class="status-text"></div>
@@ -638,7 +707,7 @@
 
     <script src="./formCreados/modelos/scr/funcGenerales.js"></script>
     <script src="./formCreados/modelos/scr/crearElementos.js"></script>
-    
+
     <!--Script js de la prueba elinv -->
     <script src="./formCreados/prueba/estiloPrueba.js"></script>
 
