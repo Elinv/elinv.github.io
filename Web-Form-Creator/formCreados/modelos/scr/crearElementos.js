@@ -33,7 +33,7 @@ $('#crearButtonResetSubmitModal').on('show.bs.modal', function (event) {
 function crearButton(...params) {
     // html que insertaremos
     let id = randId();
-    let frag = `<div id="${id}" style="margin: auto;"><button type="${$('#SelectButtonType option:selected').val()}" id="${$("#idBoton").val()}" name="${$("#nameBoton").val()}" title="${$("#titleBoton").val()}" class="btn ${$('#SelectButtonStyle option:selected').val()}">${$("#textoBoton").val()}</button></div>`.toDOM();
+    let frag = `<elv><div id="${id}" style="margin: auto;"><button type="${$('#SelectButtonType option:selected').val()}" id="${$("#idBoton").val()}" name="${$("#nameBoton").val()}" title="${$("#titleBoton").val()}" class="btn ${$('#SelectButtonStyle option:selected').val()}">${$("#textoBoton").val()}</button></div></elv>`.toDOM();
 
     // lo agregamos al area de trabajo
     document.getElementById("contenedor1").appendChild(frag);
@@ -147,7 +147,7 @@ $('#crearFieldsetLegendModal').on('show.bs.modal', function (event) {
 function crearFieldset() {
     // html que insertaremos
     let id = randId();
-    let frag = `<div id="${id}" style="margin: auto;">
+    let frag = `<elv><div id="${id}" style="margin: auto;">
                     <fieldset class="border p-2" 
                         style="border-radius: 4px; width: ${$("#idWidthFL").val()}px; height: ${$("#idHeightFL").val()}px">
                         <legend class="w-auto"
@@ -157,7 +157,7 @@ function crearFieldset() {
                             ${$("#textoFieldsetLegend").val()}
                         </legend>
                     </fieldset>
-                </div>`.toDOM();
+                </div></elv>`.toDOM();
 
     // lo agregamos al area de trabajo
     document.getElementById("contenedor1").appendChild(frag);
@@ -277,7 +277,7 @@ $('#crearTextareaModal').on('show.bs.modal', function (event) {
 function funcCrearTextarea(params) {
     // html que insertaremos
     let id = randId();
-    let frag = `<div id="${id}" style="margin: auto;"><textarea class="form-control" id="${$("#idTextarea").val()}" name="${$("#nameTextarea").val()}" placeholder="${$("#placeholderTextarea").val()}" rows="${$("#rowTextarea").val()}" cols="${$("#colsTextarea").val()}"></textarea></div>`.toDOM();
+    let frag = `<elv><div id="${id}" style="margin: auto;"><textarea class="form-control" id="${$("#idTextarea").val()}" name="${$("#nameTextarea").val()}" placeholder="${$("#placeholderTextarea").val()}" rows="${$("#rowTextarea").val()}" cols="${$("#colsTextarea").val()}"></textarea></div></elv>`.toDOM();
 
     // lo agregamos al area de trabajo
     document.getElementById("contenedor1").appendChild(frag);
@@ -390,7 +390,7 @@ function crearLabel(params) {
     let id = randId();
     let estilo = $('#estiloLabel option:selected').val();
     let tipo = $('#opcionesDialCrearTexto option:selected').val();
-    let frag = `<${tipo} class="${estilo}" style="margin: auto;justify-content: center;text-align: center;" id="${id}">${$("#textoLabel").val()}</${tipo}>`.toDOM();
+    let frag = `<elv><${tipo} class="${estilo}" style="margin: auto;justify-content: center;text-align: center;" id="${id}">${$("#textoLabel").val()}</${tipo}></elv>`.toDOM();
 
     // lo agregamos al area de trabajo
     document.getElementById("contenedor1").appendChild(frag);
@@ -468,7 +468,7 @@ function crearInputs(params) {
     let tipo = $('#opcionesDialCrearInputs option:selected').val();
 
     let evento = $('#asignarEventoCrearInputs option:selected').val();
-    let frag = `<input class="form-control ${$('#estiloCrearInputs').val()}" style="margin:0px auto; display:block; width:${$('#anchoInput').val()}px;" type="${tipo}" id="${id}" name="${id}" placeholder="${$('#textoInput').val()}" value="${$('#textoInput').val()}" ${evento}="null" />`.toDOM();
+    let frag = `<elv><input class="form-control ${$('#estiloCrearInputs').val()}" style="margin:0px auto; display:block; width:${$('#anchoInput').val()}px;" type="${tipo}" id="${id}" name="${id}" placeholder="${$('#textoInput').val()}" value="${$('#textoInput').val()}" ${evento}="null" /></elv>`.toDOM();
 
     // lo agregamos al area de trabajo
     document.getElementById("contenedor1").appendChild(frag);
@@ -648,17 +648,17 @@ function crearMedia(params) {
     // de acuerdo al tipo de control -Si es Video
     if (control == 'Video') {
         // fragmento de código a agregar
-        frag = `<video width="${ancho}" height="${alto}" id="${id}" name="${id}" controls><source src="./formCreados/media/mov_bbb.mp4" type="video/mp4"><source src="./formCreados/media/mov_bbb.ogg" type="video/ogg">Your browser does not support the video tag.</video>`.toDOM();
+        frag = `<elv><video width="${ancho}" height="${alto}" id="${id}" name="${id}" controls><source src="./formCreados/media/mov_bbb.mp4" type="video/mp4"><source src="./formCreados/media/mov_bbb.ogg" type="video/ogg">Your browser does not support the video tag.</video></elv>`.toDOM();
     }
     // de acuerdo al tipo de control -Si es Video
     if (control == 'Video_subtitulado') {
         // fragmento de código a agregar
-        frag = `<video width="${ancho}" height="${alto}" id="${id}" name="${id}" controls> <source src="./formCreados/media/mov_bbb.mp4" type="video/mp4"> <source src="./formCreados/media/mov_bbb.ogg" type="video/ogg"> <track src="fgsubtitles_en.vtt" kind="subtitles" srclang="en" label="English"> <track src="fgsubtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian"> Your browser does not support the video tag. </video> `.toDOM();
+        frag = `<elv><video width="${ancho}" height="${alto}" id="${id}" name="${id}" controls> <source src="./formCreados/media/mov_bbb.mp4" type="video/mp4"> <source src="./formCreados/media/mov_bbb.ogg" type="video/ogg"> <track src="fgsubtitles_en.vtt" kind="subtitles" srclang="en" label="English"> <track src="fgsubtitles_no.vtt" kind="subtitles" srclang="no" label="Norwegian"> Your browser does not support the video tag. </video></elv> `.toDOM();
     }
     // de acuerdo al tipo de control -Si es Video
     if (control == 'Audio') {
         // fragmento de código a agregar
-        frag = `<div id="${id}" style="margin: auto;"><audio style="margin: 0 auto; display: block;" width="${ancho}" height="${alto}" controls> <source src="./formCreados/media/horse.ogg" type="audio/ogg"><source src="./formCreados/media/horse.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio></div>`.toDOM();
+        frag = `<elv><div id="${id}" style="margin: auto;"><audio style="margin: 0 auto; display: block;" width="${ancho}" height="${alto}" controls> <source src="./formCreados/media/horse.ogg" type="audio/ogg"><source src="./formCreados/media/horse.mp3" type="audio/mpeg"> Your browser does not support the audio element.</audio></div></elv>`.toDOM();
     }
 
     // lo agregamos al area de trabajo
@@ -723,7 +723,7 @@ function crearImageSvgFigure(params) {
     // de acuerdo al tipo de control -Si es Video
     if (control == 'Image') {
         // fragmento de código a agregar
-        frag = `<img src="./formCreados/media/elinv.jpg" alt="Elinv @ 2022" width="${ancho}" height="${alto}" id="${id}" name="${id}" >`.toDOM();
+        frag = `<elv><img src="./formCreados/media/elinv.jpg" alt="Elinv @ 2022" width="${ancho}" height="${alto}" id="${id}" name="${id}" ></elv>`.toDOM();
     }
     // de acuerdo al tipo de control -Si es Video
     if (control == 'Svg') {
@@ -731,17 +731,17 @@ function crearImageSvgFigure(params) {
         let cxSvg = ancho / 2;
         let cySvg = alto / 2;
         let rSvg = alto / 2 -10;
-        frag = `<svg width="${ancho}" height="${alto}" id="${id}" name="${id}"><circle cx="${cxSvg}" cy="${cySvg}" r="${rSvg}" stroke="green" stroke-width="4" fill="yellow" />Sorry, your browser does not support inline SVG.</svg>`.toDOM();
+        frag = `<elv><svg width="${ancho}" height="${alto}" id="${id}" name="${id}"><circle cx="${cxSvg}" cy="${cySvg}" r="${rSvg}" stroke="green" stroke-width="4" fill="yellow" />Sorry, your browser does not support inline SVG.</svg></elv>`.toDOM();
     }
     // de acuerdo al tipo de control -Si es Video
     if (control == 'Picture') {
         // fragmento de código a agregar
-        frag = `<picture id="${id}" name="${id}"><source media="(min-width:${ancho}px)" srcset="./formCreados/media/elinv.jpg"><source media="(min-width:${alto}px)" srcset="./formCreados/media/elinv.jpg"><img src="./formCreados/media/elinv.jpg" alt="Elinv 2022" style="width:auto;"></picture>`.toDOM();
+        frag = `<elv><picture id="${id}" name="${id}"><source media="(min-width:${ancho}px)" srcset="./formCreados/media/elinv.jpg"><source media="(min-width:${alto}px)" srcset="./formCreados/media/elinv.jpg"><img src="./formCreados/media/elinv.jpg" alt="Elinv 2022" style="width:auto;"></picture></elv>`.toDOM();
     }
     // de acuerdo al tipo de control -Si es Video
     if (control == 'Figure') {
         // fragmento de código a agregar
-        frag = `<figure id="${id}" name="${id}"><img src="./formCreados/media/elinv.jpg" alt="Trulli" style="width:${ancho}px"><figcaption>Elinv @ 2022.</figcaption></figure>`.toDOM();
+        frag = `<elv><figure id="${id}" name="${id}"><img src="./formCreados/media/elinv.jpg" alt="Trulli" style="width:${ancho}px"><figcaption>Elinv @ 2022.</figcaption></figure></elv>`.toDOM();
     }
 
     // lo agregamos al area de trabajo
@@ -797,16 +797,16 @@ function crearImageSvgFigure(params) {
             labelAdd = `<label for="autos">Elija su auto:</label>`;
         }
         // agregamos el fragmento
-        frag = `<div id="${id}" style="margin: auto;">
+        frag = `<elv><div id="${id}" style="margin: auto;">
             ${labelAdd}
             <select name="autos" id="autos" class="form-select form-select-sm">  
-            <option value="ford">Ford</option><option value="fiat">Fiat</option><option value="mercedes Benz">Mercedes Benz</option><option value="audi">Audi</option></select></div>`.toDOM();
+            <option value="ford">Ford</option><option value="fiat">Fiat</option><option value="mercedes Benz">Mercedes Benz</option><option value="audi">Audi</option></select></div></elv>`.toDOM();
     }
     // de acuerdo al tipo de control -Si es Video
      if (control == 'Datalist_Text') {
          // fragmento de código a agregar
-         frag = `<div id="${id}" style="margin: auto;"><input type="text" id="${id}" name="${id}" list="lenguajes"/>
-            <datalist id="lenguajes" class="form-select form-select-sm"><option value="JavaScript"></option><option value="Python"></option><option value="Java"></option><option value="HTML">Stop being a troll</option></datalist></div>`.toDOM();
+         frag = `<elv><div id="${id}" style="margin: auto;"><input type="text" id="${id}" name="${id}" list="lenguajes"/>
+            <datalist id="lenguajes" class="form-select form-select-sm"><option value="JavaScript"></option><option value="Python"></option><option value="Java"></option><option value="HTML">Stop being a troll</option></datalist></div></elv>`.toDOM();
     }
     // de acuerdo al tipo de control -Si es Video
     if (control == 'Datalist_Color') {
@@ -815,9 +815,9 @@ function crearImageSvgFigure(params) {
             labelAdd = `<label for="autos">Elija color:</label>`;
         }        
         // fragmento de código a agregar
-        frag = `<div id="${id}" style="margin: auto;">
+        frag = `<elv><div id="${id}" style="margin: auto;">
             ${labelAdd}
-            <input type="color" id="pick_color" list="colors"/><datalist id="colors" class="form-select form-select-sm"><option value="#155AF0"></option><option value="#F107BA"></option><option value="#2B2B2B"></option></datalist></div>`.toDOM();
+            <input type="color" id="pick_color" list="colors"/><datalist id="colors" class="form-select form-select-sm"><option value="#155AF0"></option><option value="#F107BA"></option><option value="#2B2B2B"></option></datalist></div></elv>`.toDOM();
     }
 
     // lo agregamos al area de trabajo
@@ -857,3 +857,19 @@ function crearImageSvgFigure(params) {
 
 }
 /**------------------------------------------------------------ */
+$("#contenedor1").click(function(){
+    let controles = $('#contenedor1').html().trim();
+    controles = controles.replace(/class="draggable dragaware claseArrastrable"/g, '');
+    controles = controles.replace(/draggable "/g, '');
+    controles = controles.replace(/ dragaware"/g, '');
+    controles = controles.replace(/claseArrastrable"/g, '');        
+    const myArray = controles.split("</elv>");
+    let index = 0, final = '', temp = '';
+    for (index = 0; index < myArray.length-1; index++) {
+        temp = myArray[index].replace(/<elv>/g, '');
+        temp = temp.replace(/</g, '&lt;');
+        temp = temp.replace(/>/g, '&gt;');        
+        final += temp + '<hr>';
+    }
+    $('#codigoFuente').html(final);
+});
