@@ -1,28 +1,3 @@
-<!-- <?php
-function movil(){
-if(preg_match('/(up.browser|up.link|mmp|symbian|smartphone|midp|wap|phone)/i',strtolower($_SERVER['HTTP_USER_AGENT']))){
-    return "1";
-}
-
-$user_agent = $_SERVER['HTTP_USER_AGENT'];
-$user = array('PIE4','PIE4_Smartphone','PIE6','Minimo','OperaMini','AvantGo','Plucker','NetFront',  
-    'SonyEricsson','Nokia','Motorola','BlackBerry','WindowsMobile','PPC','PDA','Smartphone','Palm');
-
-if(in_array($user_agent,$user))
-    return "1";
-else
-    return "0";
-}
-// detectamos de donde proviene el tráfico
-$movil = movil();
-// Solo autorizamos su uso en PC escritorio, debido al formato.
-if ( $movil == "0" ) {
-    //echo "La web no se ha cargado desde un movil.";
-} else {
-    echo "<center>Esta aplicación<br>no funciona<br>en<br>teléfonos móviles.</center>";
-return -1;
-}
-?> -->
 <!DOCTYPE html>
 <html lang="es">
 
@@ -43,11 +18,18 @@ return -1;
 </head>
 
 <body>
-    <div style="position: absolute; top: -0.8em; left: 50%; min-height: 60%;">
-        <h1 id="next" class="myButBlue digTime" style="width: 500px; font-size: 1.5em;">Next Subtitle</h1>
+    <div id="aviso-movil-horizontal">
+        
+        <div align="center">            
+            <h1 id="next" class="myButBlue digTime" style="font-size: 3.5em;">
+                Por favor, coloca tu móvil en horizontal.
+            </h1>
+        </div>   
     </div>
-
-    <div class="container" style="position: relative;">
+    <div id="wrapper" class="container" style="position: relative;">
+        <div style="position: absolute; top: -0.8em; left: 50%; min-height: 60%;">
+            <h1 id="next" class="myButBlue digTime" style="width: 500px; font-size: 1.5em;">Next Subtitle</h1>
+        </div>
         <div class="controlAudio">
             <fieldset class="naranja">
                 <legend class="naranja">Panel De Control:</legend>

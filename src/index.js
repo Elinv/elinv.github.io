@@ -330,7 +330,7 @@ window.onload = function () {
         // en pantallas mas chicas o de tv
         let zoomAct = Math.round(window.devicePixelRatio * 100);
         let size = screen.width;
-        if (size <= 1400 && zoomAct >= 70) {
+        if (size <= 1400 && size >= 800 && zoomAct >= 70) {
             document.body.style.zoom = "65%";
         }
         // Refresca al rate play utlimamente usado.
