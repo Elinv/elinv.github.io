@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<title>JavaScript IDE - Elinv</title>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<meta name="description"
+		content="No soy lo que ustedes creen!, y no creen lo que soy! Todo lo que necesitamos es Dios! La música y la literatura aquí expresada por Elinv, es solamente fantástica! Y el sano juicio así debe asumirla." />
+	<meta name="author" content="Elinv" />
+	<meta name="keywords" content="'música, rock, pop, alma, sentimientos'">
+	<meta name="language" content="Spanish">
+	
+	<script>
+		let cachet = Math.floor(Math.random() * (9999 - 0 + 1) + 0);
+	</script>
+
+
+	<link rel="stylesheet" href="./src/bootstrap.min.css?v=" + cachet >
+	<script src="./src/jquery.min.js?v=" + cachet ></script>
+	<script src="./src/bootstrap.min.js?v=" + cachet ></script>
+	<script src="./src/codes.js?v=" + cachet ></script>
+	<link rel="stylesheet" href="./src/style.css?v=" + cachet >
+
+	<!-- Favicon-->
+	<link rel="icon" type="image/x-icon" href="./favicon.ico?v=" + cachet />	
+
+</head>
+
+<body>
+	<h6 class="text-center mt-2"><sub>Elinv</sub></h6>
+	<h1 class="text-center mt-1 fw-bold"><u style="color:lawngreen">JavaScript IDE</u></h1>
+
+	<div class="container mt-5">
+		<div class="row">
+			<!-- Tabs de Código -->
+			<div class="col-md-6">
+				<h2>Código</h2>
+				<div class="tab">
+					<button id="actInicio" class="tablinksEdit" onclick="openTabEdit(event, 'jsTab')">Javascript</button>
+					<button class="tablinksEdit" onclick="openTabEdit(event, 'htmlTab')">Html</button>
+					<button class="tablinksEdit" onclick="openTabEdit(event, 'cssTab')">CSS</button>
+					<!-- <div class="my-4"> -->
+					<button id="runButton" class="btn btn-success mx-2">Run</button>
+					<button id="clearButton" class="btn btn-info mx-2">Clean</button>
+					<!-- </div> -->
+				</div>
+				<div id="jsTab" class="tabcontentEdit">
+					<div id="editorContainer" class="window mx-0">
+						<div id="editor">
+// Tu código en javascript
+console.log("Tu primer programa");
+	</div>
+					</div>
+				</div>
+
+				<div id="htmlTab" class="tabcontentEdit">
+					<div id="htmlEditor">&lt;!-- Diseña aquí tu web --&gt;
+&lt;h1&gt;Hola esta es tu primer página&lt;/h1&gt; 
+	</div>
+				</div>
+
+				<div id="cssTab" class="tabcontentEdit">
+					<div id="cssEditor">/* Estilos */
+h1 {
+	color: red;
+	background-color: yellow;
+}</div>
+				</div>
+			</div>
+			<!-- Tabs de salida visual -->
+			<div class="col-md-6">
+				<h2>Out</h2>
+				<div class="tab">
+					<button id="actInicio1" class="tablinksView" onclick="openTabView(event, 'console')">Console</button>
+					<button class="tablinksView" onclick="openTabView(event, 'Wysick')">View</button>
+					<button class="tablinksView" onclick="openTabView(event, 'viewHtml')">Html Source Code</button>
+				</div>
+
+				<div id="console" class="tabcontentView">
+					<div id="consoleOutputContainer" class="window mx-0">
+						<div id="consoleOutput"></div>
+					</div>
+				</div>
+
+				<div id="Wysick" class="tabcontentView">
+					<div id="consoleOutputContainer" class="window mx-0">
+						<iframe width="100%" style="min-height: calc(65vh - 60px);" id="viewer" frameborder="0"></iframe>
+					</div>
+				</div>
+
+				<div id="viewHtml" class="tabcontentView">
+					<div id="consoleOutputContainer" class="window mx-0">
+						<iframe width="100%" style="min-height: calc(63vh - 60px);" id="viewHtmlCode" frameborder="0"></iframe>
+					</div>
+				</div>				
+			</div>
+		</div>
+	</div>
+
+	<!-- load ace -->
+	<script src="./src_ace/ace.js"></script>
+	<!-- load ace language_tools extension -->
+	<script src="./src_ace/ext-language_tools.js"></script>
+	<!-- load ace inline_autocomplete extension -->
+	<script src="./src_ace/ext-inline_autocomplete.js"></script>
+	<!-- load ace statusbar extension -->
+	<!-- <script src="./src_ace/ext-statusbar.js"></script> -->
+	<!-- load ace emmet extension -->
+	<script src="./src_ace/ext-emmet.js"></script>
+
+	<script>
+		const editor = ace.edit("editor");
+		editor.setTheme("ace/theme/dracula");
+		editor.session.setMode("ace/mode/javascript");
+		editor.setShowPrintMargin(false);
+		editor.session.setTabSize(4);
+		editor.setHighlightActiveLine(true);
+		editor.session.setUseWrapMode(true);
+		editor.focus();
+		editor.gotoLine(1);
+
+		// trigger extension
+		ace.require("ace/ext/language_tools");
+		ace.require("ace/ext/emmet").setCore('ext/emmet_core');
+
+		// Base de datos de snippets personales cargar en => codes.js
+		// Así agregamos snippets personalizados.
+		var snippetManager = ace.require("ace/snippets").snippetManager;
+		snipp.forEach(element => {
+			snippetManager.register(snippetManager.parseSnippetFile("snippet " + element), "javascript");	
+		});
+	
+		// enable autocompletion and snippets
+		editor.setOptions({
+			enableBasicAutocompletion: true,
+			enableInlineAutocompletion: true,
+			enableSnippets: true,
+			enableLiveAutocompletion: true
+		});
+		// Including Emmet
+		editor.setOption("enableEmmet", true);
+		editor.getSession().on('change', function () {
+			update();
+		});
+		const runButton = $id("runButton");
+		const clearButton = $id("clearButton");
+		const consoleOutput = $id("consoleOutput");
+
+		runButton.addEventListener("click", () => {
+			consoleOutput.innerHTML = "";
+
+			try {
+				let logOutput = "";
+				console.log = function (msg) {
+					logOutput += msg + "\n";
+				};
+
+				eval(editor.getValue());
+
+				consoleOutput.innerHTML = logOutput;
+			} catch (error) {
+				consoleOutput.innerHTML = error.message;
+			}
+		});
+
+		function clearOutput() {
+			consoleOutput.innerHTML = "";
+		}
+
+		clearButton.addEventListener("click", clearOutput);
+	</script>
+
+	<script>
+
+		var html = ace.edit("htmlEditor");
+		var css = ace.edit("cssEditor");
+
+		html.setTheme("ace/theme/monokai");
+		css.setTheme("ace/theme/monokai");
+
+		html.session.setMode("ace/mode/html");
+		css.session.setMode("ace/mode/css");
+
+		html.setShowPrintMargin(false);
+		html.session.setTabSize(4);
+		html.setHighlightActiveLine(true);
+		html.session.setUseWrapMode(true);
+
+		// enable autocompletion and snippets
+		html.setOptions({
+			enableBasicAutocompletion: true,
+			enableInlineAutocompletion: true,
+			enableSnippets: true,
+			enableLiveAutocompletion: true
+		});
+		// Including Emmet to Editor  
+		html.setOption("enableEmmet", true);
+		html.getSession().on('change', function () {
+			update();
+		});
+
+		css.setShowPrintMargin(false);
+		css.session.setTabSize(4);
+		css.setHighlightActiveLine(true);
+		css.session.setUseWrapMode(true);
+
+		// enable autocompletion and snippets
+		css.setOptions({
+			enableBasicAutocompletion: true,
+			enableInlineAutocompletion: true,
+			enableSnippets: true,
+			enableLiveAutocompletion: true
+		});
+		// Including Emmet to Editor  
+		css.setOption("enableEmmet", true);
+		css.getSession().on('change', function () {
+			update();
+		});
+
+	</script>
+
+	<script>
+		function openTabEdit(evt, elemento) {
+			var i, tabcontentEdit, tablinks;
+			tabcontentEdit = document.getElementsByClassName("tabcontentEdit");
+			for (i = 0; i < tabcontentEdit.length; i++) {
+				tabcontentEdit[i].style.display = "none";
+			}
+			tablinksEdit = document.getElementsByClassName("tablinksEdit");
+			for (i = 0; i < tablinksEdit.length; i++) {
+				tablinksEdit[i].className = tablinksEdit[i].className.replace(" active", "");
+			}
+			$id(elemento).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+		function openTabView(evt, elemento) {
+			var i, tabcontentView, tablinksView;
+			tabcontentView = document.getElementsByClassName("tabcontentView");
+			for (i = 0; i < tabcontentView.length; i++) {
+				tabcontentView[i].style.display = "none";
+			}
+			tablinksView = document.getElementsByClassName("tablinksView");
+			for (i = 0; i < tablinksView.length; i++) {
+				tablinksView[i].className = tablinksView[i].className.replace(" active", "");
+			}
+			$id(elemento).style.display = "block";
+			evt.currentTarget.className += " active";
+		}
+
+		document.addEventListener('DOMContentLoaded', function () {
+			$id("Wysick").style.display = "none";
+			$id("htmlTab").style.display = "none";
+			$id("cssTab").style.display = "none";
+			$id("viewHtml").style.display = "none";
+			$id("actInicio").className += " active";
+			$id("actInicio1").className += " active";
+
+			// Carga desde localStorage
+			// Javascript code
+			let jsCode = localStorage.getItem("jsCode");
+			if (jsCode) {
+				editor.setValue(jsCode);
+			}
+			// Html code
+			let htmlCode = localStorage.getItem("htmlCode");
+			if (htmlCode) {
+				html.setValue(htmlCode);
+			}
+			// CSS code
+			let cssCode = localStorage.getItem("cssCode");
+			if (cssCode) {
+				css.setValue(cssCode);
+			}			
+			update();
+		});
+
+		// Salva a localStorage
+		// Javascript code
+		editor.on("change", () => {
+			let jsCode = editor.getValue();
+			localStorage.setItem("jsCode", jsCode);
+		});
+		// html code
+		html.on("change", () => {
+			let htmlCode = html.getValue();
+			localStorage.setItem("htmlCode", htmlCode);
+		});
+		// css code
+		css.on("change", () => {
+			let cssCode = css.getValue();
+			localStorage.setItem("cssCode", cssCode);
+		});
+
+	</script>
+
+	<!-- Viewer Scripts -->
+	<script type="text/javascript">
+		function update() {
+			// Conformamos la vista de la  pagina web
+			let estilos = `<style>${css.getValue()}</style>`;
+			let htmlSourceCode = `${html.getValue()}`;
+			let htmlCode = `${estilos} ${htmlSourceCode}`;
+
+			// Aquí el código fuente
+			// Estilos
+			let estilosCodeRep = `<style>${css.getValue()}</style>`.replaceAll('<', '&lt;');
+			estilosCodeRep = estilosCodeRep.replaceAll('>', '&gt;');
+			// Html
+			let htmlSourceCodeRep = `${html.getValue()}`.replaceAll('<', '&lt;');;
+			htmlSourceCodeRep = htmlSourceCodeRep.replaceAll('>', '&gt;');
+			// Código final
+			let htmlCodeSource = `${head}  <br><br>  ${estilosCodeRep} <br><br> ${headPostStyle} <br><br> ${htmlSourceCodeRep}  <br><br>  ${bodyEnd}`;			
+
+			// Iframe muestra la vista web
+			let idoc = $id('viewer').contentWindow.document;
+			idoc.open();
+			idoc.write(htmlCode);height="460px" 
+			idoc.close();
+			// Iframe muestra el códigto fuente
+			let idocView = $id('viewHtmlCode').contentWindow.document;
+			idocView.open();
+			idocView.write(`<div style="color:lawngreen">${htmlCodeSource}</div>`);
+			idocView.close();
+			
+		}
+	</script>
+</body>
+
+</html>

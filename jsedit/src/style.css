@@ -1,0 +1,117 @@
+body {
+    font-family: Arial, sans-serif;
+    color: rgb(148 163 184);
+    background-color: rgb(15 23 42);
+}
+
+.btn:focus,
+.btn:active {
+    outline: none !important;
+    box-shadow: none;
+}
+
+#editor {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    font-size: 1.2em;
+}
+
+.ace_editor {
+    border-radius: 5px;
+    border: 5px;
+}
+
+.window {
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    min-height: calc(65vh - 60px);
+    padding: 0px;
+    box-sizing: border-box;
+    position: relative;
+    border-radius: 5px;
+}
+
+
+#consoleOutput {
+    white-space: pre-wrap;
+
+}
+
+#consoleOutputContainer {
+    background-color: #282a36;
+    color: rgb(226 232 240);
+    font-family: 'Courier New', Courier, monospace;
+}
+
+
+@media (max-width: 768px) {
+    .window {
+        display: block;
+        width: 100%;
+    }
+
+    #editorContainer {
+        margin-bottom: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    .my-2 {
+        flex-direction: column;
+    }
+
+    #runButton,
+    #clearButton {
+        margin: 10px 0;
+    }
+}
+
+
+
+/* Style the tab */
+.tab {
+    overflow: hidden;
+    border: 1px solid #ccc;
+    background-color: #665a5a;
+}
+
+/* Style the buttons inside the tab */
+.tab button {
+    background-color: inherit;
+    float: left;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    padding: 14px 16px;
+    transition: 0.3s;
+    font-size: 17px;
+}
+
+/* Change background color of buttons on hover */
+.tab button:hover {
+    background-color: #ddd;
+}
+
+/* Create an active/current tablink class */
+.tab button.active {
+    background-color: #ccc;
+}
+
+/* Style the tab content */
+.tabcontentEdit, .tabcontentView {
+    display: block;
+    padding: 0px 0px;
+    border: 1px solid #ccc;
+    border-top: none;
+}
+
+
+#htmlTab, #cssTab, #htmlEditor, #cssEditor {
+    height: 100%;
+    font-size: 1.2em;
+}
+/* Style the tab */
