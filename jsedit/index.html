@@ -29,21 +29,25 @@
 
 <body>
 	<h6 class="text-center mt-2"><sub>Elinv</sub></h6>
-	<h1 class="text-center mt-1 fw-bold"><u style="color:lawngreen">JavaScript IDE</u></h1>
+	<h1 class="text-center mt-1 fw-bold">
+		<u style="color:lawngreen">JavaScript IDE</u>
+	</h1>
 
-	<div class="container mt-5">
+	<div class="container mt-2">
 		<div class="row">
 			<!-- Tabs de Código -->
 			<div class="col-md-6">
-				<h2>Código</h2>
+				 <center><button id="" class="btn btn-success mx-2">Código</button></center>
 				<div class="tab">
 					<button id="actInicio" class="tablinksEdit" onclick="openTabEdit(event, 'jsTab')">Javascript</button>
 					<button class="tablinksEdit" onclick="openTabEdit(event, 'htmlTab')">Html</button>
 					<button class="tablinksEdit" onclick="openTabEdit(event, 'cssTab')">CSS</button>
 					<!-- <div class="my-4"> -->
-					<button id="runButton" class="btn btn-success mx-2">Run</button>
-					<button id="clearButton" class="btn btn-info mx-2">Clean</button>
+					<!-- <button id="runButton" class="btn btn-success mx-2">Run</button>
+					<button id="clearButton" class="btn btn-info mx-2">Clean</button> -->
 					<!-- </div> -->
+				   <button id="runButton" class="btn btn-primary mx-2">Run</button>				
+				   <button id="clearButton" class="btn btn-info mx-2">Clean</button>
 				</div>
 				<div id="jsTab" class="tabcontentEdit">
 					<div id="editorContainer" class="window mx-0">
@@ -70,7 +74,7 @@ h1 {
 			</div>
 			<!-- Tabs de salida visual -->
 			<div class="col-md-6">
-				<h2>Out</h2>
+				 <center><button id="" class="btn btn-success mx-2">Out</button></center>
 				<div class="tab">
 					<button id="actInicio1" class="tablinksView" onclick="openTabView(event, 'console')">Console</button>
 					<button class="tablinksView" onclick="openTabView(event, 'Wysick')">View</button>
@@ -84,14 +88,14 @@ h1 {
 				</div>
 
 				<div id="Wysick" class="tabcontentView">
-					<div id="consoleOutputContainer" class="window mx-0">
-						<iframe width="100%" style="min-height: calc(65vh - 60px);" id="viewer" frameborder="0"></iframe>
+					<div id="consoleOutputContainerviewhtml" class="window mx-0">
+						<iframe width="100%" style="min-height: calc(75vh - 60px);" id="viewer" frameborder="0"></iframe>
 					</div>
 				</div>
 
 				<div id="viewHtml" class="tabcontentView">
 					<div id="consoleOutputContainer" class="window mx-0">
-						<iframe width="100%" style="min-height: calc(63vh - 60px);" id="viewHtmlCode" frameborder="0"></iframe>
+						<iframe width="100%" style="min-height: calc(73vh - 60px);" id="viewHtmlCode" frameborder="0"></iframe>
 					</div>
 				</div>				
 			</div>
