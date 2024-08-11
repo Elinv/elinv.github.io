@@ -28,60 +28,116 @@
 </head>
 
 <body>
-	<h6 class="text-center mt-2"><sub>Elinv</sub></h6>
+	<h6 class="text-center mt-2"><sub><u style="color:lawngreen">Elinv</u></sub></h6>
 	<h1 class="text-center mt-1 fw-bold">
 		<u style="color:lawngreen">JavaScript IDE</u>
 	</h1>
-
 	<div class="container mt-2">
 		<div class="row">
 			<!-- Tabs de Código -->
-			<div class="col-md-6">
-				 <center><button id="" class="btn btn-success mx-2">Código</button></center>
+			<div id="editCode" class="col-md-6">
+				 <center>
+					<button id="idMsgRfsh" class="btn btn-primary mx-2">Ctrl+Enter for refresh</button>
+					<button id="idButLblCdg" class="btn btn-success mx-2">Código</button>
+					<button id="idButFull" class="btn btn-info mx-2" onclick="fullScreenEdit(this);">Full</button>
+				</center>
 				<div class="tab">
-					<button id="actInicio" class="tablinksEdit" onclick="openTabEdit(event, 'jsTab')">Javascript</button>
-					<button class="tablinksEdit" onclick="openTabEdit(event, 'htmlTab')">Html</button>
-					<button class="tablinksEdit" onclick="openTabEdit(event, 'cssTab')">CSS</button>
+					<button id="idButViewTabJs" class="clsTbLnkEdt" onclick="openTabEdit(event, 'jsTab')">Javascript</button>
+					<button class="clsTbLnkEdt" onclick="openTabEdit(event, 'htmlTab')">Html</button>
+					<button class="clsTbLnkEdt" onclick="openTabEdit(event, 'cssTab')">CSS</button>
 					<!-- <div class="my-4"> -->
-					<!-- <button id="runButton" class="btn btn-success mx-2">Run</button>
-					<button id="clearButton" class="btn btn-info mx-2">Clean</button> -->
+					<!-- <button id="idBtRn" class="btn btn-success mx-2">Run</button>
+					<button id="idBtCln" class="btn btn-info mx-2">Clean</button> -->
 					<!-- </div> -->
-				   <button id="runButton" class="btn btn-primary mx-2">Run</button>				
-				   <button id="clearButton" class="btn btn-info mx-2">Clean</button>
+				   <button id="idBtRn" class="btn btn-primary mx-2">Run</button>				
+				   <button id="idBtCln" class="btn btn-info mx-2">Clean</button>
+				   
 				</div>
-				<div id="jsTab" class="tabcontentEdit">
+				<div id="jsTab" class="clsTbCntntEdt">
 					<div id="editorContainer" class="window mx-0">
 						<div id="editor">
 // Tu código en javascript
 console.log("Tu primer programa");
-	</div>
+console.log("Debug");
+try {
+	adddlert("Welcome guest!");
+}
+catch(err) {
+	console.log(`try and catch log "${err.message}"`);
+}
+						</div>
 					</div>
 				</div>
 
-				<div id="htmlTab" class="tabcontentEdit">
+				<div id="htmlTab" class="clsTbCntntEdt">
 					<div id="htmlEditor" class="window mx-0">&lt;!-- Diseña aquí tu web --&gt;
-&lt;h1&gt;Hola esta es tu primer página&lt;/h1&gt; 
+&lt;!-- Diseña aquí tu web --&gt;
+&lt;h1 id="prueba"&gt;Hola esta es tu primer página&lt;/h1&gt; 
+
+
+&lt;button class="myButton" onclick="myFunction(this)"&gt;Click Aquí&lt;/button&gt;
+
+&lt;script&gt;
+function myFunction(that) {
+    if (that.innerHTML == "Click Aquí"){
+        that.innerHTML = "Vuelve a hacer click";
+       document.getElementById("prueba").innerHTML = "Todo en un solo lugar al primer click";         
+    }else{
+                that.innerHTML = "Click Aquí";
+       prueba.innerHTML = "Todo en un solo lugar al volver a hacer click";   
+    }
+}
+&lt;/script&gt;
+
 	</div>
 				</div>
 
-				<div id="cssTab" class="tabcontentEdit">
+				<div id="cssTab" class="clsTbCntntEdt">
 					<div id="cssEditor" class="window mx-0">/* Estilos */
+/* Estilos */
 h1 {
 	color: red;
 	background-color: yellow;
-}</div>
+}
+.myButton {
+	box-shadow: 0px 0px 0px 2px #9fb4f2;
+	background:linear-gradient(to bottom, #7892c2 5%, #476e9e 100%);
+	background-color:#7892c2;
+	border-radius:10px;
+	border:1px solid #4e6096;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:19px;
+	padding:12px 37px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #283966;
+}
+.myButton:hover {
+	background:linear-gradient(to bottom, #476e9e 5%, #7892c2 100%);
+	background-color:#476e9e;
+}
+.myButton:active {
+	position:relative;
+	top:1px;
+}
+					</div>
 				</div>
 			</div>
 			<!-- Tabs de salida visual -->
-			<div class="col-md-6">
-				 <center><button id="" class="btn btn-success mx-2">Out</button></center>
+			<div id="viewOut" class="col-md-6">
+				 <center>
+					<button id="" class="btn btn-success mx-2">Out</button>
+					<button id="idButFull" class="btn btn-info mx-2" onclick="fullScreenView(this);">Full</button>
+				</center>
 				<div class="tab">
-					<button id="actInicio1" class="tablinksView" onclick="openTabView(event, 'console')">Console</button>
+					<button id="idButViewTabJs1" class="tablinksView" onclick="openTabView(event, 'consola')">Console</button>
 					<button class="tablinksView" onclick="openTabView(event, 'Wysick')">View</button>
 					<button class="tablinksView" onclick="openTabView(event, 'viewHtml')">Html Source Code</button>
 				</div>
 
-				<div id="console" class="tabcontentView">
+				<div id="consola" class="tabcontentView">
 					<div id="consoleOutputContainer" class="window mx-0">
 						<div id="consoleOutput"></div>
 					</div>
@@ -94,8 +150,8 @@ h1 {
 				</div>
 
 				<div id="viewHtml" class="tabcontentView">
-					<div id="consoleOutputContainer" class="window mx-0">
-						<iframe width="100%" style="min-height: calc(73vh - 60px);" id="viewHtmlCode" frameborder="0"></iframe>
+					<div id="consoleOutputContainerCodeHtml" class="window mx-0">
+						<iframe width="100%" class="window fullWIN" id="viewHtmlCode" frameborder="0"></iframe>
 					</div>
 				</div>				
 			</div>
@@ -131,8 +187,9 @@ h1 {
 		// Base de datos de snippets personales cargar en => codes.js
 		// Así agregamos snippets personalizados.
 		var snippetManager = ace.require("ace/snippets").snippetManager;
-		snipp.forEach(element => {
-			snippetManager.register(snippetManager.parseSnippetFile("snippet " + element), "javascript");	
+		let i = 0;
+		snipp.forEach(elem => {
+			snippetManager.register(snippetManager.parseSnippetFile("snippet " + elem[0]), elem[1]);	
 		});
 	
 		// enable autocompletion and snippets
@@ -147,11 +204,11 @@ h1 {
 		editor.getSession().on('change', function () {
 			update();
 		});
-		const runButton = $id("runButton");
-		const clearButton = $id("clearButton");
+		const idBtRn = $id("idBtRn");
+		const idBtCln = $id("idBtCln");
 		const consoleOutput = $id("consoleOutput");
 
-		runButton.addEventListener("click", () => {
+		idBtRn.addEventListener("click", () => {
 			consoleOutput.innerHTML = "";
 
 			try {
@@ -172,7 +229,7 @@ h1 {
 			consoleOutput.innerHTML = "";
 		}
 
-		clearButton.addEventListener("click", clearOutput);
+		idBtCln.addEventListener("click", clearOutput);
 	</script>
 
 	<script>
@@ -200,8 +257,29 @@ h1 {
 		});
 		// Including Emmet to Editor  
 		html.setOption("enableEmmet", true);
-		html.getSession().on('change', function () {
-			update();
+		var fromSetValue = false;
+		html.getSession().on('change', function () {	
+			if (!fromSetValue) {
+        		// user input				
+			}
+		});
+		// Al presionar enter or Ctrl + Enter o Ctrl + NumpadEnter, updata vista html css y javascript
+		addEventListener("keypress", (e) => {
+			if (e.code == 'Enter' || e.code == 'NumpadEnter'){				
+				fromSetValue = true;
+				update();
+				idMsgRfsh.innerHTML = "Html View Refresh!";
+				idMsgRfsh.classList.remove('btn-primary');
+				idMsgRfsh.classList.add('btn-warning');
+
+				setTimeout(() => {
+					idMsgRfsh.classList.add('btn-primary');
+					idMsgRfsh.classList.remove('btn-warning');			
+					idMsgRfsh.innerHTML = "Ctrl+Enter for refresh";
+					
+				}, 5000);
+				fromSetValue = false;
+			}
 		});
 
 		css.setShowPrintMargin(false);
@@ -226,14 +304,14 @@ h1 {
 
 	<script>
 		function openTabEdit(evt, elemento) {
-			var i, tabcontentEdit, tablinks;
-			tabcontentEdit = document.getElementsByClassName("tabcontentEdit");
-			for (i = 0; i < tabcontentEdit.length; i++) {
-				tabcontentEdit[i].style.display = "none";
+			var i, clsTbCntntEdt, tablinks;
+			clsTbCntntEdt = document.getElementsByClassName("clsTbCntntEdt");
+			for (i = 0; i < clsTbCntntEdt.length; i++) {
+				clsTbCntntEdt[i].style.display = "none";
 			}
-			tablinksEdit = document.getElementsByClassName("tablinksEdit");
-			for (i = 0; i < tablinksEdit.length; i++) {
-				tablinksEdit[i].className = tablinksEdit[i].className.replace(" active", "");
+			clsTbLnkEdt = document.getElementsByClassName("clsTbLnkEdt");
+			for (i = 0; i < clsTbLnkEdt.length; i++) {
+				clsTbLnkEdt[i].className = clsTbLnkEdt[i].className.replace(" active", "");
 			}
 			$id(elemento).style.display = "block";
 			evt.currentTarget.className += " active";
@@ -258,8 +336,8 @@ h1 {
 			$id("htmlTab").style.display = "none";
 			$id("cssTab").style.display = "none";
 			$id("viewHtml").style.display = "none";
-			$id("actInicio").className += " active";
-			$id("actInicio1").className += " active";
+			$id("idButViewTabJs").className += " active";
+			$id("idButViewTabJs1").className += " active";
 
 			// Carga desde localStorage
 			// Javascript code
@@ -318,10 +396,8 @@ h1 {
 			let htmlCodeSource = `${head}  <br><br>  ${estilosCodeRep} <br><br> ${headPostStyle} <br><br> ${htmlSourceCodeRep}  <br><br>  ${bodyEnd}`;			
 
 			// Iframe muestra la vista web
-			let idoc = $id('viewer').contentWindow.document;
-			idoc.open();
-			idoc.write(htmlCode);height="460px" 
-			idoc.close();
+			document.getElementById("viewer").srcdoc = htmlCode;
+
 			// Iframe muestra el códigto fuente
 			let idocView = $id('viewHtmlCode').contentWindow.document;
 			idocView.open();
@@ -333,3 +409,18 @@ h1 {
 </body>
 
 </html>
+
+
+<!-- 
+Ayuda nombre <=> identificación elementos
+---------------------------------------------------------------------
+id		idMsgRfsh		id 		Button info Ctrl+Enter para refrescar
+id		idButLblCdg		id 		Button tipo label "Código"
+id		idButFull		id 		Button action full screen.
+id		idButViewTabJs	id 		Button action View Tab Javascript
+cls		clsTbLnkEdt		class	Tabs links edición.
+id		idBtRn			id		Button Run
+id		idBtCln			id		Button Clean 
+cls		clsTbCntntEdt	class	Tab Content Edición.
+---------------------------------------------------------------------
+-->
