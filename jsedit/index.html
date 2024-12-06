@@ -71,33 +71,56 @@ catch(err) {
 
 				<div id="htmlTab" class="clsTbCntntEdt">
 					<div id="htmlEditor" class="window mx-0">&lt;!-- Diseña aquí tu web --&gt;
-&lt;!-- Diseña aquí tu web --&gt;
 &lt;h1 id="prueba"&gt;Hola esta es tu primer página&lt;/h1&gt; 
-
-
+&lt;center&gt;
 &lt;button class="myButton" onclick="myFunction(this)"&gt;Click Aquí&lt;/button&gt;
-
+&lt;/center&gt;
+&lt;br&gt;
+&lt;hr&gt;
+&lt;h1 id="fechayhora"&gt;&lt;/h1&gt; 
+&lt;center&gt;
+&lt;button class="myButton" onclick='let text = fechayhora.innerHTML; navigator.clipboard.writeText(text); alert("Fecha y hora enviada al portapapeles.")'&gt;
+	Fecha y hora al portapapeles.
+&lt;/button&gt;
+&lt;/center&gt;
+&lt;hr&gt;
 &lt;script&gt;
 function myFunction(that) {
-    if (that.innerHTML == "Click Aquí"){
-        that.innerHTML = "Vuelve a hacer click";
-       document.getElementById("prueba").innerHTML = "Todo en un solo lugar al primer click";         
-    }else{
-                that.innerHTML = "Click Aquí";
-       prueba.innerHTML = "Todo en un solo lugar al volver a hacer click";   
-    }
+	if (that.innerHTML == "Click Aquí"){
+		that.innerHTML = "Vuelve a hacer click";
+		document.getElementById("prueba").innerHTML = "Todo en un solo lugar al primer click";         
+	}else{
+				that.innerHTML = "Click Aquí";
+		prueba.innerHTML = "Todo en un solo lugar al volver a hacer click";   
+	}
 }
+// Tu fecha y hora actual por consola
+console.log(new Date().toLocaleDateString() + " | " + new Date().toLocaleTimeString());
+// Fecha y hora en español
+var event = new Date();
+var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };   
+document.getElementById("fechayhora").innerHTML = event.toLocaleDateString('es-ES', options) + " | " + new Date().toLocaleTimeString();      
+console.log(event.toLocaleDateString('es-ES', options) + " | " + new Date().toLocaleTimeString());
 &lt;/script&gt;
+											
 
-	</div>
+					</div>
 				</div>
 
 				<div id="cssTab" class="clsTbCntntEdt">
-					<div id="cssEditor" class="window mx-0">/* Estilos */
+					<div id="cssEditor" class="window mx-0">
 /* Estilos */
-h1 {
+h1#prueba {
 	color: red;
 	background-color: yellow;
+}
+h1#fechayhora {
+	color: cyan;
+	background-color: #7892c2;
+	font-size:4vw;
+	text-shadow:0px 1px 0px #283966;
+	font-family:Arial;
+	text-align: center;
 }
 .myButton {
 	box-shadow: 0px 0px 0px 2px #9fb4f2;
