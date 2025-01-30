@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>🅻 🅴 🆃 🆁 🅰 🆂</title>
+    <style>
+        p {
+            font-size: 36px;
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1em;
+        }
+
+        .button.before {
+            position: relative;
+            border: 1px solid #0360df;
+            border-radius: 50px;
+            padding: 8px 16px;
+            min-width: 8em;
+            background-color: #0360df;
+            background-image: radial-gradient(75% 50% at 50% 0%, #f4feff, transparent), radial-gradient(75% 35% at 50% 85%, #8de3fc, transparent);
+            box-shadow: inset 0 -2px 4px 1px rgba(17, 110, 231, 0.6), inset 0 -4px 4px 1px #8de3fc, inset 0 0 2px 1px rgba(255, 255, 255, 0.2), 0 1px 4px 1px rgba(17, 110, 231, 0.2), 0 1px 4px 1px rgba(0, 0, 0, 0.1);
+            color: #fff;
+            text-align: center;
+            text-shadow: 0 1px 1px #116ee7;
+            transition-property: border-color, transform, background-color;
+            transition-duration: 0.2s;
+        }
+
+        .button.before::after {
+            content: "";
+            position: absolute;
+            top: 1px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50px;
+            width: 80%;
+            height: 40%;
+            background-image: linear-gradient(to bottom, #f4feff, transparent);
+            opacity: 0.75;
+        }
+
+        .button.before:hover {
+            transform: scale(1.04);
+        }
+
+        .button.before:active {
+            border-color: #0048d5;
+            transform: scale(0.96);
+            background-color: #0048d5;
+        }
+
+        .button.after {
+            position: relative;
+            z-index: 0;
+            border: 1px solid #3247cf;
+            border-radius: 8px;
+            padding: 8px 16px;
+            min-width: 8em;
+            background-image: linear-gradient(180deg, #4098ff, #4058ff 62%, #4075ff);
+            box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.2), inset 0 -1px 0px rgba(0, 0, 0, 0.2), 0 1px 2px rgba(0, 0, 0, 0.2);
+            font-family: "Roobert", sans-serif;
+            font-weight: 500;
+            text-align: center;
+            color: #fff;
+            text-shadow: 0 1px rgba(0, 0, 0, 0.2);
+            transition-property: border-color, transform;
+            transition-duration: 0.2s;
+            will-change: transform;
+        }
+
+        @media (hover: hover) {
+            .button.after:hover {
+                transform: scale(1.04);
+            }
+        }
+
+        .button.after:active {
+            border-color: #192ba1;
+            transform: scale(0.98);
+        }
+
+        .button.after::before,
+        .button.after::after {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 0;
+            border-radius: 7px;
+            opacity: 0;
+            transition-property: opacity;
+            transition-duration: 0.2s;
+        }
+
+        .button.after::before {
+            background-image: linear-gradient(180deg, #40a6ff, #4058ff 62%, #4075ff);
+            box-shadow: inset 0 1px 0px rgba(255, 255, 255, 0.2), inset 0 -1px 0px rgba(0, 0, 0, 0.2);
+        }
+
+        @media (hover: hover) {
+            .button.after:hover::before {
+                opacity: 1;
+            }
+        }
+
+        .button.after::after {
+            background-image: linear-gradient(180deg, #0a40ce, #4058ff 38%, #40a0ff);
+            box-shadow: inset 0 1px 1px #0b1c95;
+        }
+
+        .button.after:active::after {
+            opacity: 1;
+        }
+
+        .button-label {
+            font-style: italic;
+            color: #c0c0d8;
+        }
+    </style>
+    <script>
+        // para la insensibilidad en acentos.
+        let accent_map = { 'á': 'a', 'é': 'e', 'í': 'i', 'ó': 'o', 'ú': 'u', 'Á': 'a', 'É': 'e', 'è': 'e', 'Í': 'i', 'Ó': 'o', 'Ú': 'u' };
+
+        // Para poder buscar a pesar de los acentos
+        function obviarAcentos(s) {
+            if (!s) { return ''; }
+            var ret = '';
+            for (var i = 0; i < s.length; i++) {
+                ret += accent_map[s.charAt(i)] || s.charAt(i);
+            }
+            return ret;
+        };
+    </script>
+</head>
+
+<body>
+
+    <p id="textIn" contenteditable="true" style="color:black; padding-left: 20%; padding-right: 15%;" onclick="changeColor()">
+        2023 - Ingresa tu texto!
+    </p>
+    <br>
+    <script>
+        var contenido = textIn.textContent;
+        textIn.onblur = function () {
+            contenido = textIn.textContent;
+            console.log(contenido);
+        };
+    </script>
+    
+    <div class="button-container">
+        <input type="color" id="myColor">
+        <input style="width: 350px;" type="range" id="sxwq" name="sxwq" min="1" max="100" value="36" onclick="textIn.style.fontSize=''+ this.value + 'px';">
+        <p>Value: <span id="info"></span></p>
+    </div>
+    
+    <div class="">
+        <center>
+            <button class="button before" id="before" type="button" onclick="textIn.textContent = contenido;">Refresh</button>
+
+            <button class="button before" id="before" type="button" onclick="transformar('cubos')">🅻🅴🆃🆁🅰</button>        
+            <button class="button before" id="before" type="button" onclick="transformar('cubos1')">🄻🄴🅃🅁🄰</button>
+            <button class="button before" id="before" type="button" onclick="transformar('goticaMax')">𝔏𝔈𝔗ℜ𝔄</button>
+            <button class="button before" id="before" type="button" onclick="transformar('goticaMin')">𝔩𝔢𝔱𝔯𝔞</button>
+            <br><br>
+
+            <button class="button before" id="before" type="button" onclick="transformar('linMax')">𝕃𝔼𝕋ℝ𝔸</button>
+            <button class="button before" id="before" type="button" onclick="transformar('linMin')">𝕝𝕖𝕥𝕣𝕒</button>
+
+            <button class="button before" id="before" type="button" onclick="transformar('GlobFondoBlanco')">🅛🅔🅣🅡🅐</button>
+            <button class="button before" id="before" type="button" onclick="transformar('GlobSinFondoMax')">ⓁⒺⓉⓇⒶ</button>
+            <button class="button before" id="before" type="button" onclick="transformar('GlobSinFondoMin')">ⓛⓔⓣⓡⓐ</button>
+            <br><br>
+
+            <button class="button before" id="before" type="button" onclick="transformar('ItalicMax')">𝓛𝓔𝓣𝓡𝓐</button>
+            <button class="button before" id="before" type="button" onclick="transformar('ItalicMin')">𝓵𝓮𝓽𝓻𝓪</button>
+            <button class="button before" id="before" type="button" onclick="transformar('RevesMax')">ꓶƎꓕꓤⱯ</button>
+            <button class="button before" id="before" type="button" onclick="transformar('revesMin')">ןǝʇɹɐ</button>
+            <button class="button before" id="before" type="button" onclick="transformar('ItalicMax1')">ℒℰ𝒯ℛ𝒜</button>
+            <button class="button before" id="before" type="button" onclick="transformar('ItalicMin1')">𝓁𝑒𝓉𝓇𝒶</button>
+            <br><br>         
+
+            <button class="button before" id="before" type="button" onclick="transformar('BoldMax')">𝗟𝗘𝗧𝗥𝗔</button>
+            <button class="button before" id="before" type="button" onclick="transformar('BoldMin')">𝗹𝗲𝘁𝗿𝗮</button>
+            <button class="button before" id="before" type="button" onclick="transformar('NormalMax')">𝐋𝐄𝐓𝐑𝐀</button>
+            <button class="button before" id="before" type="button" onclick="transformar('NormalMin')">𝐥𝐞𝐭𝐫𝐚</button>
+            <button class="button before" id="before" type="button" onclick="transformar('BoldExtraMax')">𝙇𝙀𝙏𝙍𝘼</button>
+            <button class="button before" id="before" type="button" onclick="transformar('BoldExtraMin')">𝙡𝙚𝙩𝙧𝙖</button>
+            <br><br>
+
+            <button class="button before" id="before" type="button" onclick="transformar('NorExtMax')">𝑳𝑬𝑻𝑹𝑨</button>
+            <button class="button before" id="before" type="button" onclick="transformar('NorExtMin')">𝒍𝒆𝒕𝒓𝒂</button>
+            <button class="button before" id="before" type="button" onclick="transformar('SupMin')">ˡᵉᵗʳᵃ</button>
+            <button class="button before" id="before" type="button" onclick="transformar('SupMax')">ᴸᴱᵀᴿᴬ</button>
+
+        </center>
+    </div>
+    
+
+    <script>
+        //change color
+        function changeColor() {
+            document.getElementById("textIn").style.color = document.getElementById("myColor").value;
+        }
+
+        // range set font size
+        var slider = document.getElementById("sxwq");
+        var output = document.getElementById("info");
+        output.innerHTML = slider.value;
+
+        slider.oninput = function () {
+            output.innerHTML = this.value;
+        }
+
+
+        function autoCorrect(text, correction) {
+            const reg = new RegExp(Object.keys(correction).join("|"), "g");
+            return text.replace(reg, (matched) => correction[matched]);
+        }
+
+        // Consume the function as follows
+        let textoIn = document.getElementById("textIn");
+
+        const cubos = {
+            a: "🅰", b: "🅱", c: "🅲", d: "🅳", e: "🅴", f: "🅵", g: "🅶", h: "🅷", i: "🅸", j: "🅹", k: "🅺", l: "🅻", m: "🅼", n: "🅽", o: "🅾", p: "🅿", q: "🆀", r: "🆁", s: "🆂", t: "🆃", u: "🆄", v: "🆅", w: "🆆", x: "🆇", y: "🆈", z: "🆉", 0: "0⃣", 1: "1⃣ ", 2: "2⃣ ", 3: "3⃣ ", 4: "4⃣ ", 5: "5⃣ ", 6: "6⃣  ", 7: "7⃣ ", 8: "8⃣ ", 9: "9⃣ "
+        };
+
+        const cubos1 = {
+            a:"🄰", b:"🄱", c:"🄲", d:"🄳", e:"🄴", f:"🄵", g:"🄶", h:"🄷", i:"🄸", j:"🄹", k:"🄺", l:"🄻", m:"🄼", n:"🄽", o:"🄾", p:"🄿", q:"🅀", r:"🅁", s:"🅂", t:"🅃", u:"🅄", v:"🅅", w:"🅆", x:"🅇", y:"🅈", z:"🅉", 0:"0⃣ ", 1:"1⃣ ", 2:"2⃣ ", 3:"3⃣ ", 4:"4⃣ ", 5:"5⃣ ", 6:"6⃣ ", 7:"7⃣ ", 8:"8⃣ ", 9:"9⃣ "
+        }
+
+        const goticaMax = {
+            a:"𝔄", b:"𝔅", c:"ℭ", d:"𝔇", e:"𝔈", f:"𝔉", g:"𝔊", h:"ℌ", i:"ℑ", j:"𝔍", k:"𝔎", l:"𝔏", m:"𝔐", n:"𝔑", o:"𝔒", p:"𝔓", q:"𝔔", r:"ℜ", s:"𝔖", t:"𝔗", u:"𝔘", v:"𝔙", w:"𝔚", x:"𝔛", y:"𝔜", z:"ℨ"
+        }
+
+        const goticaMin = {
+            a:"𝔞", b:"𝔟", c:"𝔠", d:"𝔡", e:"𝔢", f:"𝔣", g:"𝔤", h:"𝔥", i:"𝔦", j:"𝔧", k:"𝔨", l:"𝔩", m:"𝔪", n:"𝔫", o:"𝔬", p:"𝔭", q:"𝔮", r:"𝔯", s:"𝔰", t:"𝔱", u:"𝔲", v:"𝔳", w:"𝔴", x:"𝔵", y:"𝔶", z:"𝔷"
+        }
+
+        const linMax = {
+            a:"𝔸", b:"𝔹", c:"ℂ", d:"𝔻", e:"𝔼", f:"𝔽", g:"𝔾", h:"ℍ", i:"𝕀", j:"𝕁", k:"𝕂", l:"𝕃", m:"𝕄", n:"ℕ", o:"𝕆", p:"ℙ", q:"ℚ", r:"ℝ", s:"𝕊", t:"𝕋", u:"𝕌", v:"𝕍", w:"𝕎", x:"𝕏", y:"𝕐", z:"ℤ", 0:"𝟘", 1:"𝟙", 2:"𝟚", 3:"𝟛", 4:"𝟜", 5:"𝟝", 6:"𝟞", 7:"𝟟", 8:"𝟠", 9:"𝟡"
+        }
+
+        const linMin = {
+            a:"𝕒", b:"𝕓", c:"𝕔", d:"𝕕", e:"𝕖", f:"𝕗", g:"𝕘", h:"𝕙", i:"𝕚", j:"𝕛", k:"𝕜", l:"𝕝", m:"𝕞", n:"𝕟", o:"𝕠", p:"𝕡", q:"𝕢", r:"𝕣", s:"𝕤", t:"𝕥", u:"𝕦", v:"𝕧", w:"𝕨", x:"𝕩", y:"𝕪", z:"𝕫", 0:"𝟘", 1:"𝟙", 2:"𝟚", 3:"𝟛", 4:"𝟜", 5:"𝟝", 6:"𝟞", 7:"𝟟", 8:"𝟠", 9:"𝟡"
+        }
+
+        const GlobFondoBlanco = {
+            a:"🅐", b:"🅑", c:"🅒", d:"🅓", e:"🅔", f:"🅕", g:"🅖", h:"🅗", i:"🅘", j:"🅙", k:"🅚", l:"🅛", m:"🅜", n:"🅝", o:"🅞", p:"🅟", q:"🅠", r:"🅡", s:"🅢", t:"🅣", u:"🅤", v:"🅥", w:"🅦", x:"🅧", y:"🅨", z:"🅩", 0:"⓿", 1:"❶", 2:"❷", 3:"❸", 4:"❹", 5:"❺", 6:"❻", 7:"❼", 8:"❽", 9:"❾"
+        }
+        
+        const GlobSinFondoMax = {
+            a:"Ⓐ", b:"Ⓑ", c:"Ⓒ", d:"Ⓓ", e:"Ⓔ", f:"Ⓕ", g:"Ⓖ", h:"Ⓗ", i:"Ⓘ", j:"Ⓙ", k:"Ⓚ", l:"Ⓛ", m:"Ⓜ", n:"Ⓝ", o:"Ⓞ", p:"Ⓟ", q:"Ⓠ", r:"Ⓡ", s:"Ⓢ", t:"Ⓣ", u:"Ⓤ", v:"Ⓥ", w:"Ⓦ", x:"Ⓧ", y:"Ⓨ", z:"Ⓩ", 0:"⓪", 1:"①", 2:"②", 3:"③", 4:"④", 5:"⑤", 6:"⑥", 7:"⑦", 8:"⑧", 9:"⑨"
+        }
+
+        const GlobSinFondoMin = {            
+            a:"ⓐ", b:"ⓑ", c:"ⓒ", d:"ⓓ", e:"ⓔ", f:"ⓕ", g:"ⓖ", h:"ⓗ", i:"ⓘ", j:"ⓙ", k:"ⓚ", l:"ⓛ", m:"ⓜ", n:"ⓝ", o:"ⓞ", p:"ⓟ", q:"ⓠ", r:"ⓡ", s:"ⓢ", t:"ⓣ", u:"ⓤ", v:"ⓥ", w:"ⓦ", x:"ⓧ", y:"ⓨ", z:"ⓩ", 0:"⓪", 1:"①", 2:"②", 3:"③", 4:"④", 5:"⑤", 6:"⑥", 7:"⑦", 8:"⑧", 9:"⑨"
+        }
+
+        const ItalicMax = {   
+            a:"𝓐", b:"𝓑", c:"𝓒", d:"𝓓", e:"𝓔", f:"𝓕", g:"𝓖", h:"𝓗", i:"𝓘", j:"𝓙", k:"𝓚", l:"𝓛", m:"𝓜", n:"𝓝", o:"𝓞", p:"𝓟", q:"𝓠", r:"𝓡", s:"𝓢", t:"𝓣", u:"𝓤", v:"𝓥", w:"𝓦", x:"𝓧", y:"𝓨", z:"𝓩"
+        }
+
+        const ItalicMin = {   
+            a:"𝓪",b:"𝓫",c:"𝓬",d:"𝓭",e:"𝓮",f:"𝓯",g:"𝓰",h:"𝓱",i:"𝓲", j:"𝓳", k:"𝓴", l:"𝓵", m:"𝓶", n:"𝓷", o:"𝓸", p:"𝓹", q:"𝓺", r:"𝓻", s:"𝓼", t:"𝓽", u:"𝓾", v:"𝓿", w:"𝔀", x:"𝔁", y:"𝔂", z:"𝔃"
+        }
+
+        const RevesMax = {   
+            a:"Ɐ", b:"ꓭ", c:"Ɔ", d:"ꓷ", e:"Ǝ", f:"Ⅎ", g:"ꓨ", h:"H", i:"I", j:"ſ", k:"ꓘ", l:"ꓶ", m:"W", n:"N", o:"O", p:"Ԁ", q:"Ò", r:"ꓤ", s:"S", t:"ꓕ", u:"ꓵ", v:"ꓥ", w:"M", x:"X", y:"⅄", z:"Z"
+        }
+
+        const revesMin = {   
+            a:"ɐ", b:"q", c:"ɔ", d:"p", e:"ǝ", f:"ɟ", g:"ƃ", h:"ɥ", i:"ı̣", j:"ɾ̣", k:"ʞ", l:"ן", m:"ɯ", n:"u", o:"o", p:"d", q:"b", r:"ɹ", s:"s", t:"ʇ", u:"n", v:"ʌ", w:"ʍ", x:"x", y:"ʎ", z:"z"
+        }
+
+        const ItalicMax1 = {   
+            a:"𝒜", b:"ℬ", c:"𝒞", d:"𝒟", e:"ℰ", f:"ℱ", g:"𝒢", h:"ℋ", i:"ℐ", j:"𝒥", k:"𝒦", l:"ℒ", m:"ℳ", n:"𝒩", o:"𝒪", p:"𝒫", q:"𝒬", r:"ℛ", s:"𝒮", t:"𝒯", u:"𝒰", v:"𝒱", w:"𝒲", x:"𝒳", y:"𝒴", z:"𝒵"
+        }
+
+        const ItalicMin1 = {
+            a:"𝒶",b:"𝒷",c:"𝒸",d:"𝒹",e:"𝑒",f:"𝒻",g:"𝑔",h:"𝒽",i:"𝒾", j:"𝒿", k:"𝓀", l:"𝓁", m:"𝓂", n:"𝓃", o:"𝑜", p:"𝓅", q:"𝓆", r:"𝓇", s:"𝓈", t:"𝓉", u:"𝓊", v:"𝓋", w:"𝓌", x:"𝓍", y:"𝓎", z:"𝓏"
+        }
+
+        const BoldMax = {
+            a:"𝗔", b:"𝗕", c:"𝗖", d:"𝗗", e:"𝗘", f:"𝗙", g:"𝗚", h:"𝗛", i:"𝗜", j:"𝗝", k:"𝗞", l:"𝗟", m:"𝗠", n:"𝗡", o:"𝗢", p:"𝗣", q:"𝗤", r:"𝗥", s:"𝗦", t:"𝗧", u:"𝗨", v:"𝗩", w:"𝗪", x:"𝗫", y:"𝗬", z:"𝗭", 0:"𝟬", 1:"𝟭", 2:"𝟮", 3:"𝟯", 4:"𝟰", 5:"𝟱", 6:"𝟲", 7:"𝟳", 8:"𝟴", 9:"𝟵"
+        }
+
+        const BoldMin = {
+            a:"𝗮", b:"𝗯", c:"𝗰", d:"𝗱", e:"𝗲", f:"𝗳", g:"𝗴", h:"𝗵", i:"𝗶", j:"𝗷", k:"𝗸", l:"𝗹", m:"𝗺", n:"𝗻", o:"𝗼", p:"𝗽", q:"𝗾", r:"𝗿", s:"𝘀", t:"𝘁", u:"𝘂", v:"𝘃", w:"𝘄", x:"𝘅", y:"𝘆", z:"𝘇", 0:"𝟬", 1:"𝟭", 2:"𝟮", 3:"𝟯", 4:"𝟰", 5:"𝟱", 6:"𝟲", 7:"𝟳", 8:"𝟴", 9:"𝟵"
+        }
+        
+        const NormalMax = {
+            a:"𝐀", b:"𝐁", c:"𝐂", d:"𝐃", e:"𝐄", f:"𝐅", g:"𝐆", h:"𝐇", i:"𝐈", j:"𝐉", k:"𝐊", l:"𝐋", m:"𝐌", n:"𝐍", o:"𝐎", p:"𝐏", q:"𝐐", r:"𝐑", s:"𝐒", t:"𝐓", u:"𝐔", v:"𝐕", w:"𝐖", x:"𝐗", y:"𝐘", z:"𝐙", 0:"𝟎", 1:"𝟏", 2:"𝟐", 3:"𝟑", 4:"𝟒", 5:"𝟓", 6:"𝟔", 7:"𝟕", 8:"𝟖", 9:"𝟗"
+        }
+        
+        const NormalMin = {
+            a:"𝐚", b:"𝐛", c:"𝐜", d:"𝐝", e:"𝐞", f:"𝐟", g:"𝐠", h:"𝐡", i:"𝐢", j:"𝐣", k:"𝐤", l:"𝐥", m:"𝐦", n:"𝐧", o:"𝐨", p:"𝐩", q:"𝐪", r:"𝐫", s:"𝐬", t:"𝐭", u:"𝐮", v:"𝐯", w:"𝐰", x:"𝐱", y:"𝐲", z:"𝐳", 0:"𝟎", 1:"𝟏", 2:"𝟐", 3:"𝟑", 4:"𝟒", 5:"𝟓", 6:"𝟔", 7:"𝟕", 8:"𝟖", 9:"𝟗"
+        }
+        
+        const BoldExtraMax = {
+            a:"𝘼", b:"𝘽", c:"𝘾", d:"𝘿", e:"𝙀", f:"𝙁", g:"𝙂", h:"𝙃", i:"𝙄", j:"𝙅", k:"𝙆", l:"𝙇", m:"𝙈", n:"𝙉", o:"𝙊", p:"𝙋", q:"𝙌", r:"𝙍", s:"𝙎", t:"𝙏", u:"𝙐", v:"𝙑", w:"𝙒", x:"𝙓", y:"𝙔", z:"𝙕", 0:"𝟬", 1:"𝟭", 2:"𝟮", 3:"𝟯", 4:"𝟰", 5:"𝟱", 6:"𝟲", 7:"𝟳", 8:"𝟴", 9:"𝟵"
+        }
+        
+        const BoldExtraMin = {
+            a:"𝙖", b:"𝙗", c:"𝙘", d:"𝙙", e:"𝙚", f:"𝙛", g:"𝙜", h:"𝙝", i:"𝙞", j:"𝙟", k:"𝙠", l:"𝙡", m:"𝙢", n:"𝙣", o:"𝙤", p:"𝙥", q:"𝙦", r:"𝙧", s:"𝙨", t:"𝙩", u:"𝙪", v:"𝙫", w:"𝙬", x:"𝙭", y:"𝙮", z:"𝙯", 0:"𝟬", 1:"𝟭", 2:"𝟮", 3:"𝟯", 4:"𝟰", 5:"𝟱", 6:"𝟲", 7:"𝟳", 8:"𝟴", 9:"𝟵"
+        }
+        
+        const NorExtMax = {
+            a:"𝑨", b:"𝑩", c:"𝑪", d:"𝑫", e:"𝑬", f:"𝑭", g:"𝑮", h:"𝑯", i:"𝑰", j:"𝑱", k:"𝑲", l:"𝑳", m:"𝑴", n:"𝑵", o:"𝑶", p:"𝑷", q:"𝑸", r:"𝑹", s:"𝑺", t:"𝑻", u:"𝑼", v:"𝑽", w:"𝑾", x:"𝑿", y:"𝒀", z:"𝒁", 0:"𝟎", 1:"𝟏", 2:"𝟐", 3:"𝟑", 4:"𝟒", 5:"𝟓", 6:"𝟔", 7:"𝟕", 8:"𝟖", 9:"𝟗"
+        }
+        
+        const NorExtMin = {
+            a:"𝒂", b:"𝒃", c:"𝒄", d:"𝒅", e:"𝒆", f:"𝒇", g:"𝒈", h:"𝒉", i:"𝒊", j:"𝒋", k:"𝒌", l:"𝒍", m:"𝒎", n:"𝒏", o:"𝒐", p:"𝒑", q:"𝒒", r:"𝒓", s:"𝒔", t:"𝒕", u:"𝒖", v:"𝒗", w:"𝒘", x:"𝒙", y:"𝒚", z:"𝒛", 0:"𝟎", 1:"𝟏", 2:"𝟐", 3:"𝟑", 4:"𝟒", 5:"𝟓", 6:"𝟔", 7:"𝟕", 8:"𝟖", 9:"𝟗"
+        }
+        
+        const SupMin = {
+            a:"ᵃ", b:"ᵇ", c:"ᶜ", d:"ᵈ", e:"ᵉ", f:"ᶠ", g:"ᵍ", h:"ʰ", i:"ⁱ", j:"ʲ", k:"ᵏ", l:"ˡ", m:"ᵐ", n:"ⁿ", o:"ᵒ", p:"ᵖ", q:"ᵠ", r:"ʳ", s:"ˢ", t:"ᵗ", u:"ᵘ", v:"ᵛ", w:"ʷ", x:"ˣ", y:"ʸ", z:"ᶻ", 0:"⁰", 1:"¹", 2:"²", 3:"³", 4:"⁴", 5:"⁵", 6:"⁶", 7:"⁷", 8:"⁸", 9:"⁹"
+        }
+        
+        const SupMax = {
+            a:"ᴬ", b:"ᴮ", c:"ᶜ", d:"ᴰ", e:"ᴱ", f:"ᶠ", g:"ᴳ", h:"ᴴ", i:"ᴵ", j:"ᴶ", k:"ᴷ", l:"ᴸ", m:"ᴹ", n:"ᴺ", o:"ᴼ", p:"ᴾ", q:"ǫ", r:"ᴿ", s:"ˢ", t:"ᵀ", u:"ᵁ", v:"ⱽ", w:"ᵂ", x:"ˣ", y:"ʸ", z:"ᶻ", 0:"⁰", 1:"¹", 2:"²", 3:"³", 4:"⁴", 5:"⁵", 6:"⁶", 7:"⁷", 8:"⁸", 9:"⁹" 
+        }
+        function transformar(params) {
+            textIn.textContent = contenido;
+            console.log(contenido);
+            let texto = textoIn.textContent.toLowerCase();
+            texto = obviarAcentos(texto);
+            const correctedText = autoCorrect(texto, eval(params));
+            textoIn.textContent = correctedText;
+            // console.log(correctedText);
+        }
+
+        // let str = document.getElementById("demo").innerHTML; 
+        // let res = str.replace(/a/g, "𝘼");
+        // document.getElementById("demo").innerHTML = res;
+
+
+        // String.prototype.replaceAll = function(search, replacement) {
+        //     var target = this;
+        //     return target.replace(new RegExp(search, 'g'), replacement);
+        // };
+
+        // function replaceAll(str, map){
+        //     for(key in map){
+        //         str = str.replaceAll(key, map[key]);
+        //     }
+        //     return str;
+        // }
+
+        // //testing...
+        // var str = "bat, ball, cat";
+        // var map = {
+        //     'bat' : 'foo',
+        //     'ball' : 'boo',
+        //     'cat' : 'bar'
+        // };
+        // var nueva = replaceAll(str, map);
+        // alert(nueva);
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Creador Formularios Web Elinv</title>
+    <link rel="stylesheet" href="./formCreados/modelos/scr/bootstrap.min.css">
+    <link rel="stylesheet" href="./formCreados/modelos/scr/jquery-ui.js">
+    <link rel="stylesheet" href="./formCreados/modelos/scr/estilos.css">
+    <!--Estilo de la prueba elinv-->
+    <link rel="stylesheet" href="./formCreados/prueba/estiloPrueba.css">
+    <!--icono refresh de la prueba elinv-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link rel="shortcut icon" href="#" />
+</head>
+
+<body>
+    <!--Si no tiene Javascript activado-->
+    <noscript class="justify-content-center">
+        <div style="position: absolute; margin: auto; z-index: 16; height: 400px; width: 300px; left: 4%; top: 26%">
+            <div id="elinvForm"
+                style="position: relative; top: 8px; left: 2px; display:inline-block; margin-left:auto; margin-right:auto; margin-bottom:auto;">
+                <div id="contenedor2"
+                    style="width: 380px; height: 660px;margin: auto;text-align:center; margin-bottom:17px;"
+                    title="Habilitando javascript accederás a toda su funcionalidad">
+
+                    <div style="margin: auto; width: 350px; position: relative; top: 10px; left: -2px;">
+                        <fieldset class="border p-2" style="border-radius: 4px; width: 350px; height: 500px;">
+                            <legend class="w-auto" title="Title del Fieldset Legend" id="Id Fieldset Legend"
+                                name="Name Fieldset Legend">Para verlo funcionar, habilitá Javascript</legend>
+                        </fieldset>
+                    </div><img src="./img/elinv.png" alt="Elinv @ 2022" width="130" height="380" id="voo" name="voo"
+                        style="position: relative; top: -398px; left: 3px;">
+                    <div id="zvrdn" style="margin: auto; width: 60px; position: relative; top: -793px; left: 1px;">
+                        <button type="button" id="Id_Boton" name="Name_Boton" title="Presione aquí para cancelar!"
+                            class="btn btn-primary">Elinv</button>
+                    </div>
+                    <div id="qswuets" style="margin: auto; width: 248px; position: relative; top: -463px; left: 5px;">
+                        <button type="button" id="Id_Boton" name="Name_Boton" title="Presione aquí para cancelar!"
+                            class="btn btn-primary">No tienes Javascript habilitado.</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </noscript>
+
+    <div style="padding-top: 30px;"></div>
+
+    <div class="text-center">
+        <img alt="US" src="./img/DesignFormElinv.png" width="410px">
+    </div>
+
+    <!-- MENU DE CREACIÓN DEL FORM -->
+    <div class="m-4 text-center">
+        <div class="btn-group" style="padding-left: 5px;">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Make</button>
+            <!-- Acción para crear botones tipos => Button, Reset, Submit -->
+            <div class="dropdown-menu" style="padding-left: 5px; width: 220px; background: transparent;">
+                <a class="btn btn-primary open-AddBookDialog" data-toggle="modal"
+                    data-target="#crearButtonResetSubmitModal" data-textoalboton="Cancelar"
+                    data-namealboton="Name_Boton" data-titlealboton="Presione aquí para cancelar!"
+                    data-idalboton="Id_Boton" title="Crear elementos tipo Button, Reset o Submit">
+                    <span class="badge badge-danger">1</span> Botón
+                </a>
+
+                <a class="btn btn-primary open-AddBookDialog" style="margin-top: 5px;" data-toggle="modal"
+                    data-target="#crearFieldsetLegendModal" data-textoalfieldsetlegend="Texto de Fieldset Legend"
+                    data-namealfieldsetlegend="Name Fieldset Legend"
+                    data-titlealfieldsetlegend="Title del Fieldset Legend" data-idalfieldsetlegend="Id Fieldset Legend"
+                    data-idwidthfl="350" data-idheightfl="200" title="Agregar contenedor Fieldset y Legend.">
+                    <span class="badge badge-dark">2</span> FieldsetLegend
+                </a>
+
+                <a class="btn btn-primary open-AddBookDialog" style="margin-top: 5px;" data-toggle="modal"
+                    data-target="#crearTextareaModal" data-idaltextarea="id_textarea"
+                    data-namealtextarea="Name_textarea" data-placeholderaltextarea="Placeholder al textarea"
+                    data-rowaltextarea="8" data-colsaltextarea="40" title="Crear elementos tipo Textarea">
+                    <span class="badge badge-success">3</span> Textarea
+                </a>
+
+                <a class="btn btn-primary open-AddBookDialog" style="margin-top: 5px;" data-toggle="modal"
+                    data-target="#crearLabelModal" title="Crear elementos tipo Label">
+                    <span class="badge badge-warning">4</span> Label
+                </a>
+
+                <a class="btn btn-primary open-AddBookDialog" style="margin-top: 5px;" data-toggle="modal"
+                    data-target="#crearInputsModal" title="Crear elementos tipo Inputs">
+                    <span class="badge badge-primary">5</span> Inputs
+                </a>
+
+                <a class="btn btn-primary open-AddBookDialog" style="margin-top: 5px;" data-toggle="modal"
+                    data-target="#crearMediaModal" title="Crear elementos tipo Media">
+                    <span class="badge badge-danger">6</span> Media
+                </a>
+
+                <a class="btn btn-primary open-AddBookDialog" style="margin-top: 5px;" data-toggle="modal"
+                    data-target="#crearImageSvgFigure" title="Crear elementos tipo Image|svg|figure">
+                    <span class="badge badge-dark">7</span> Imagen|svg|figure
+                </a>
+
+                <a class="btn btn-primary open-AddBookDialog" style="margin-top: 5px;" data-toggle="modal"
+                    data-target="#crearSelectDatalist" title="Crear elementos tipo Image|svg|figure">
+                    <span class="badge badge-success">8</span> Select | Datalist
+                </a>
+
+            </div>
+        </div>
+
+        <!-- MENU DE HERRAMIENTAS -->
+        <div class="btn-group" style="padding-left: 5px;">
+            <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">Tools</button>
+            <!-- Acción para crear botones tipos => Button, Reset, Submit -->
+            <div class="dropdown-menu" style="padding-left: 5px; width: 240px; background: transparent;">
+                <a class="btn btn-primary open-AddBookDialog"
+                    title="Exportar el formulario creando un modelo del mismo." onclick="exportFormulario();">
+                    <span class="badge badge-success">1</span> Exportar Formulario
+                </a>
+                <a class="btn btn-primary open-AddBookDialog" title="Ver totalidad de formularios creados."
+                    onclick="window.open('./formCreados/listForm.php', '_blank');;" style="margin-top: 5px;">
+                    <span class="badge badge-success">2</span> Ver formularios
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- AREA DE DESARROLLO DE NUESTRO FORMULARIO 
+    <div class="container">
+        <div class="row row-centered pos">
+            <div class="col-lg-8 col-centered recuadro">
+                <div id="contenedor1" class="">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+    AREA DE DESARROLLO DE NUESTRO FORMULARIO -->
+
+    <div class="recuadro" title="Form estilo PC de escritorio">
+        <div id="contenedor1"
+            style="width: 380px; height: 660px; border-width: 1px;border-style: solid; border-color:chartreuse; margin: auto;text-align:center; margin-bottom:17px;"
+            title="📱 Form estilo movil preferentemente! &#013; 🔲 Dimensiones (412 x 914) &#013;📱 Samsung Galaxy A51/71">
+
+        </div>
+    </div>
+
+
+    <!-- DIALOGO MODAL CREADOR SELECT | DATALIST TEXTO | DATALIST COLOR => crearSelectDatalist
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearSelectDatalist" tabindex="0" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+                    <label for="opcionesselectDatalist" class="text-primary">
+                        Crear control del tipo Select | Datalist Text | Datalist Color:
+                    </label>
+
+                    <select id="opcionesselectDatalist" class="browser-default custom-select">
+                        <option value="Select">Select</option>
+                        <option value="Datalist_Text">Datalist Text</option>
+                        <option value="Datalist_Color">Datalist Color</option>
+                    </select>
+
+                    <label for="incluirLabel" class="text-primary">
+                        Incluir label?
+                    </label>
+
+                    <input class="form-control text-primary" type="checkbox" id="incluirLabel" name="incluirLabel"
+                        placeholder="Pregunta: Incluir label?" style="width: 50px; margin: auto;">
+
+                    <input type="hidden" id="idContenedorSelectDatalistHidden" name="botonHidden" value="">
+
+                </div>
+                <div class="modal-footer">
+                    <button id="idCrearSelectDatalist" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="crearSelectDatalist()">
+                        Crear
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+
+    <!-- DIALOGO MODAL CREADOR MEDIA => opcionesDialCrearImageSvgFigure
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearImageSvgFigure" tabindex="0" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+                    <label for="opcionesDialCrearImageSvgFigure" class="text-primary">
+                        Crear control del tipo Image | svg | figure:
+                    </label>
+
+                    <select id="opcionesDialCrearImageSvgFigure" class="browser-default custom-select">
+                        <option value="Image">Image</option>
+                        <option value="Svg">Svg</option>
+                        <option value="Picture">Picture</option>
+                        <option value="Figure">Figure</option>
+                    </select>
+
+                    <label for="anchoImage" class="text-primary">
+                        Ancho del Control Media:
+                    </label>
+                    <input type="number" class="form-control text-center" id="anchoImage"
+                        placeholder="Ancho del control Image|svg|figure" title="Ancho del control Image|svg|figure"
+                        min="100" max="400" value="320">
+
+                    <label for="altoMedia" class="text-primary">
+                        Alto del Control Media:
+                    </label>
+                    <input type="number" class="form-control text-center" id="altoImage"
+                        placeholder="Alto del control Image|svg|figure" title="Alto del control Image|svg|figure"
+                        min="100" max="400" value="240">
+
+                    <input type="hidden" id="idContenedorImageSvgFigureHidden" name="botonHidden" value="">
+
+                </div>
+                <div class="modal-footer">
+                    <button id="idCrearMedia" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="crearImageSvgFigure()">
+                        Crear
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+
+    <!-- DIALOGO MODAL CREADOR MEDIA => opcionesDialCrearMedia
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearMediaModal" tabindex="0" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+                    <label for="opcionesDialCrearMedia" class="text-primary">
+                        Crear control del tipo Multimedia:
+                    </label>
+
+                    <select id="opcionesDialCrearMedia" class="browser-default custom-select">
+                        <option value="Video">Video</option>
+                        <option value="Video_subtitulado">Video_subtitulado</option>
+                        <option value="Audio">Audio</option>
+                    </select>
+
+                    <label for="anchoMedia" class="text-primary">
+                        Ancho del Control Media:
+                    </label>
+                    <input type="number" class="form-control text-center" id="anchoMedia"
+                        placeholder="Ancho del control media" title="Ancho del control media" min="100" max="400"
+                        value="320">
+
+                    <label for="altoMedia" class="text-primary">
+                        Alto del Control Media:
+                    </label>
+                    <input type="number" class="form-control text-center" id="altoMedia"
+                        placeholder="Alto del control media" title="Alto del control media" min="100" max="400"
+                        value="240">
+
+                    <input type="hidden" id="idContenedorMediaHidden" name="botonHidden" value="">
+
+                </div>
+                <div class="modal-footer">
+                    <button id="idCrearMedia" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="crearMedia()">
+                        Crear
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+    <!-- DIALOGO MODAL CREADOR INPUTS => crearInputsModal
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearInputsModal" tabindex="0" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+
+                    <input type="text" class="form-control text-center" id="textoInput"
+                        placeholder="Ingrese texto del control" title="Ingrese texto del control" value="Mi control">
+
+                    <label for="opcionesDialCrearInputs" class="text-primary">
+                        Ancho del Control:
+                    </label>
+
+                    <input type="number" class="form-control text-center" id="anchoInput"
+                        placeholder="Ancho del input en pixeles" title="Ancho del input en pixeles" min="100" max="400"
+                        value="350">
+
+                    <label for="opcionesDialCrearInputs" class="text-primary">
+                        Elemento a crear:
+                    </label>
+                    <select id="opcionesDialCrearInputs" class="browser-default custom-select">
+                        <option value="button">button</option>
+                        <option value="checkbox">checkbox</option>
+                        <option value="label">label</option>
+                        <option value="list">list</option>
+                        <option value="color">color</option>
+                        <option value="date">date</option>
+                        <option value="datetime-local">datetime-local</option>
+                        <option value="email">email</option>
+                        <option value="file">file</option>
+                        <option value="hidden">hidden</option>
+                        <option value="image">image</option>
+                        <option value="month">month</option>
+                        <option value="number">number</option>
+                        <option value="password">password</option>
+                        <option value="radio">radio</option>
+                        <option value="range">range</option>
+                        <option value="reset">reset</option>
+                        <option value="search">search</option>
+                        <option value="submit">submit</option>
+                        <option value="tel">tel</option>
+                        <option selected value="text">text</option>
+                        <option value="time">time</option>
+                        <option value="url">url</option>
+                        <option value="week">week</option>
+                    </select>
+                    <span class="form-label text-primary" for="asignarEvento">
+                        Desea asignar algun evento:
+                    </span>
+                    <select id="asignarEventoCrearInputs" class="browser-default custom-select">
+                        <option value="onclick">onclick</option>
+                        <option value="onchange">onchange</option>
+                        <option value="onmouseover">onmouseover</option>
+                        <option value="onmouseout">onmouseout</option>
+                        <option value="onmousedown">onmousedown</option>
+                        <option value="onmouseup">onmouseup</option>
+                        <option value="onfocus">onfocus</option>
+                        <option value="onfocusout">onfocusout</option>
+                    </select>
+                    <span class="form-label text-primary" for="estiloLabel">
+                        Seleccione estilo:
+                    </span>
+                    <select id="estiloCrearInputs" class="browser-default custom-select">
+                        <option selected value="text-primary">Text primary</option>
+                        <option value="text-secondary">Text secondary</option>
+                        <option value="text-success">Text success</option>
+                        <option value="text-danger">Text danger</option>
+                        <option value="text-warning">Text warning</option>
+                        <option value="text-info">Text info</option>
+                        <option value="text-light bg-dark">Text light bg-dark</option>
+                        <option value="text-dark">Text dark</option>
+                        <option value="text-muted">Text muted</option>
+                        <option value="text-white bg-dark">text-white bg-dark</option>
+                        <option value="badge rounded-pill bg-primary">badge bg-primary</span>
+                        <option value="badge rounded-pill bg-secondary">badge bg-secondary</span>
+                        <option value="badge rounded-pill bg-success">badge bg-success</span>
+                        <option value="badge rounded-pill bg-danger">badge bg-danger</span>
+                        <option value="badge rounded-pill bg-warning">badge bg-warning</span>
+                        <option value="badge rounded-pill bg-info">badge bg-info</span>
+                        <option value="badge rounded-pill bg-light">badge bg-light</span>
+                        <option value="badge rounded-pill bg-dark">badge bg-dark</span>
+                    </select>
+                    <input type="hidden" id="idContenedorInputsHidden" name="botonHidden" value="">
+
+                    <label for="comment" class="text-primary">Código fuente origen:</label>
+                    <textarea id="codFuenteInputs" class="form-control" rows="5" id="comment"
+                        placeholder="Nuevo control Textarea" disabled></textarea>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="idCrearInputs" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="crearInputs()">
+                        Crear
+                    </button>
+                    <button id="idEditarInputs" type="button" class="btn btn-secondary" style="display: none;"
+                        data-dismiss="modal" onclick="editarInputs()">
+                        Editar
+                    </button>
+                    <button id="idEliminarInputs" type="button" class="btn btn-secondary" style="display: none;"
+                        data-dismiss="modal" onclick="eliminarInputs('')">
+                        Eliminar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+
+    <!-- DIALOGO MODAL CREADOR LABEL => crearLabelModal
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearLabelModal" tabindex="0" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+
+                    <input type="text" class="form-control text-center" id="textoLabel"
+                        placeholder="Ingrese texto del label" title="Ingrese texto del label">
+                    <label for="opcionesDialCrearTexto" class="text-primary">
+                        Elemento a crear:
+                    </label>
+                    <select id="opcionesDialCrearTexto" class="browser-default custom-select">
+                        <option selected value="span" title="Defines a section in a document">span</option>
+                        <option value="b" title="Bold text">b</option>
+                        <option value="code" title="Defines a piece of computer code">code</option>
+                        <option value="pre" title="Defines preformatted text">pre</option>
+                        <option value="del" title="Defines strikethrough text">del</option>
+                        <option value="div" title="Defines a section in a document">div</option>
+                        <option value="em" title="Defines emphasized text ">em</option>
+                        <option value="h1" title="Defines HTML headings">h1</option>
+                        <option value="h2" title="Defines HTML headings">h2</option>
+                        <option value="h3" title="Defines HTML headings">h3</option>
+                        <option value="h4" title="Defines HTML headings">h4</option>
+                        <option value="h5" title="Defines HTML headings">h5</option>
+                        <option value="h6" title="Defines HTML headings">h6</option>
+                        <option value="ins" title="Defines a text that has been inserted into a document">ins</option>
+                        <option value="i" title="Define estilo itálico">i</option>
+                        <option value="u"
+                            title="Defines some text that is unarticulated and styled differently from normal text">u
+                        </option>
+                        <option value="kbd" title="Defines keyboard input">kbd</option>
+                        <option value="label" title="Defines a label for an <input> element">label</option>
+                        <option value="p" title="Defines a paragraph">p</option>
+                        <option value="samp" title="Texto en línea que representa una muestra (o cita) ">samp</option>
+                        <option value="strong" title="Defines important text">strong</option>
+                        <option value="var" title="Defines a variable">var</option>
+                    </select>
+                    <span class="form-label text-primary" for="estiloLabel">
+                        Seleccione estilo:
+                    </span>
+                    <select id="estiloLabel" class="browser-default custom-select">
+                        <option selected value="text-primary">Text primary</option>
+                        <option value="text-secondary">Text secondary</option>
+                        <option value="text-success">Text success</option>
+                        <option value="text-danger">Text danger</option>
+                        <option value="text-warning">Text warning</option>
+                        <option value="text-info">Text info</option>
+                        <option value="text-light bg-dark">Text light bg-dark</option>
+                        <option value="text-dark">Text dark</option>
+                        <option value="text-muted">Text muted</option>
+                        <option value="text-white bg-dark">text-white bg-dark</option>
+                        <option value="badge rounded-pill bg-primary">badge bg-primary</span>
+                        <option value="badge rounded-pill bg-secondary">badge bg-secondary</span>
+                        <option value="badge rounded-pill bg-success">badge bg-success</span>
+                        <option value="badge rounded-pill bg-danger">badge bg-danger</span>
+                        <option value="badge rounded-pill bg-warning">badge bg-warning</span>
+                        <option value="badge rounded-pill bg-info">badge bg-info</span>
+                        <option value="badge rounded-pill bg-light">badge bg-light</span>
+                        <option value="badge rounded-pill bg-dark">badge bg-dark</span>
+                    </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="idCrearLabel" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="crearLabel('')">
+                        Crear
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+
+    <!-- DIALOGO MODAL CREADOR TEXTAREA => crearTextareaModal
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearTextareaModal" tabindex="1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+
+                    <input type="text" class="form-control text-center" id="idTextarea"
+                        placeholder="Ingrese id del Textarea" title="Ingrese id del Textarea">
+
+                    <input type="hidden" id="idContenedorTextareaHidden" name="botonHidden" value="">
+
+                    <input type="text" class="form-control text-center" id="nameTextarea"
+                        placeholder="Ingrese name del Textarea" title="Ingrese name del Textarea">
+
+                    <input type="text" class="form-control text-center" id="placeholderTextarea"
+                        placeholder="Ingrese placeholder del Textarea" title="Ingrese placeholder del Textarea">
+
+                    <input type="number" class="form-control text-center" id="rowTextarea"
+                        placeholder="Filas del Textarea" title="Filas del Textarea" min="6" max="40">
+
+                    <input type="number" class="form-control text-center" id="colsTextarea"
+                        placeholder="Columnas del Textarea" title="Columnas del Textarea" min="6" max="200">
+
+                </div>
+
+                <div class="modal-footer">
+                    <button id="deshabilitarDraggable" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="deshabilitarDraggable()">
+                        Draggable disable
+                    </button>
+                    <button id="habilitarDraggable" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="habilitarDraggable()">
+                        Draggable enable
+                    </button>
+                    <button id="idCrearTextarea" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="funcCrearTextarea()">
+                        Crear
+                    </button>
+                    <button id="idEditarTextarea" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="funcEditarTexarea('')">
+                        Editar
+                    </button>
+                    <button id="idEliminarTextarea" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="eliminarTextarea('')">
+                        Eliminar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+
+    <!-- DIALOGO MODAL CREADOR FIELDSET - LEGEND => crearFieldsetLegendModal
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearFieldsetLegendModal" tabindex="1" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+
+                    <input type="text" class="form-control text-center" id="textoFieldsetLegend"
+                        placeholder="Ingrese texto del Fieldset -> Legend" title="Ingrese texto del Fieldset -> Legend">
+                    <input type="text" class="form-control text-center" id="nameFieldsetLegend"
+                        placeholder="Valor name del Fieldset -> Legend" title="Valor name del Fieldset -> Legend">
+                    <input type="text" class="form-control text-center" id="titleFieldsetLegend"
+                        placeholder="Title del Fieldset -> Legend" title="Title del Fieldset -> Legend">
+
+                    <input type="text" class="form-control text-center" id="idFieldsetLegend"
+                        placeholder="Valor id del Fieldset -> Legend" title="Valor id del Fieldset -> Legend">
+                    <input type="hidden" id="idContenedorFieldsetLegendHidden" name="botonHidden" value="">
+
+                    <input type="number" class="form-control text-center" id="idWidthFL"
+                        placeholder="Ancho del Fieldset -> Legend" title="Ancho del Fieldset -> Legend" min="300"
+                        max="600">
+
+                    <input type="number" class="form-control text-center" id="idHeightFL"
+                        placeholder="Alto del Fieldset -> Legend" title="Alto del Fieldset -> Legend" min="300"
+                        max="600">
+                </div>
+
+                <div class="modal-footer">
+                    <button id="idCrearFieldset" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="crearFieldset()">
+                        Crear
+                    </button>
+                    <button id="idEditarFieldset" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="editarFieldset('')">
+                        Editar
+                    </button>
+                    <button id="idEliminarFieldset" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="eliminarFieldset('')">
+                        Eliminar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+
+    <!-- DIALOGO MODAL CREADOR BUTTON => crearButtonResetSubmitModal
+        ------------------------------------------------------------ -->
+    <div class="modal fade" id="crearButtonResetSubmitModal" tabindex="0" role="dialog">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+
+                <div class="modal-body text-center">
+
+                    <input type="text" class="form-control text-center" id="textoBoton"
+                        placeholder="Ingrese texto del botón" title="Ingrese texto del botón">
+                    <input type="text" class="form-control text-center" id="nameBoton"
+                        placeholder="Valor name del botón" title="Valor name del botón">
+                    <input type="text" class="form-control text-center" id="titleBoton" placeholder="Title del boton"
+                        title="Title del boton">
+                    <input type="text" class="form-control text-center" id="idBoton" placeholder="Valor id del botón"
+                        title="Valor id del botón">
+                    <input type="hidden" id="idContenedorBotonHidden" name="botonHidden" value="">
+
+                    <select id="SelectButtonStyle" name="SelectButtonStyle" aria-label="Select_button_style"
+                        class="browser-default custom-select visually-hidden">
+                        <option>Estilo del botón</option>
+                        <option selected value="btn-primary">Primary</option>
+                        <option value="btn-secondary">Secondary</option>
+                        <option value="btn-success">Success</option>
+                        <option value="btn-danger">Danger</option>
+                        <option value="btn-warning">Warning</option>
+                        <option value="btn-info">Info</option>
+                        <option value="btn-light">Light</option>
+                        <option value="btn-dark">Dark</option>
+                        <option value="btn-link">Link</option>
+                        <option value="badge rounded-pill bg-primary">badge bg-primary</span>
+                        <option value="badge rounded-pill bg-secondary">badge bg-secondary</span>
+                        <option value="badge rounded-pill bg-success">badge bg-success</span>
+                        <option value="badge rounded-pill bg-danger">badge bg-danger</span>
+                        <option value="badge rounded-pill bg-warning">badge bg-warning</span>
+                        <option value="badge rounded-pill bg-info">badge bg-info</span>
+                        <option value="badge rounded-pill bg-light">badge bg-light</span>
+                        <option value="badge rounded-pill bg-dark">badge bg-dark</span>
+                    </select>
+
+                    <select id="SelectButtonType" name="SelectButtonType" aria-label="Select_button_type"
+                        class="browser-default custom-select visually-hidden">
+                        <option>Tipo de botón</option>
+                        <option selected value="button">button</option>
+                        <option value="reset">reset</option>
+                        <option value="submit">submit</option>
+                    </select>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="idCrearBotones" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="crearButton('')">
+                        Crear
+                    </button>
+                    <button id="idEditarBotones" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="editarButton('')">
+                        Editar
+                    </button>
+                    <button id="idEliminarBotones" type="button" class="btn btn-secondary" data-dismiss="modal"
+                        onclick="eliminarButton('')">
+                        Eliminar
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+
+
+    <!-- DIALOGO MODAL CONFIRM DELETE
+        ------------------------------------------------------------ -->
+    <div id="confirDelete" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 id="myModalLabel">Estas seguro?</h3>
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-secondary">Está a punto de eliminar este elemento. Quieres proceder?</p>
+                </div>
+                <div class="modal-footer">
+                    <button id="btnDelete" class="btn btn-danger">Si</button>
+                    <button data-dismiss="modal" aria-hidden="true" class="btn btn-secondary">No</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+    <!-- PRUEBA ELINV -->
+    <!-- ----------------------------------------------------------- -->
+    <div class="mx-auto wrapper" id="pruebaElinv">
+        <header>Una pequeña prueba!</header>
+        <div class="captcha-area">
+            <div class="captcha-img">
+                <img src="./formCreados/prueba/elinv-bg.png" alt="Prueba elinv fondo!">
+                <span class="captcha"></span>
+            </div>
+            <button class="reload-btn" title="Refresca lo que observas."><i class="fas fa-redo-alt"></i></button>
+        </div>
+        <form action="#" class="input-area">
+            <input type="text" placeholder="Ingresa letras y números que ves!" maxlength="6" spellcheck="false"
+                required>
+            <button class="check-btn">Check</button>
+        </form>
+        <div class="status-text"></div>
+    </div>
+    <!-- ----------------------------------------------------------- -->
+
+    <!-- SECCION DEDICADA AL CÓDIGO FUENTE QUE SE VA OBTENIENDO. -->
+    <div class="recuadro" id="codigoFuente" 
+        style="width: 80%; height: 50%; overflow-y: auto; color: white; padding-left: 10px; padding-top: 10px;" 
+        title="Código fuente del formulario creado.">   
+    </div>
+
+    <footer class="container-fluid text-center">
+        <p>Elinv Form Builder</p>
+    </footer>
+
+    <script type="text/javascript" src="./formCreados/modelos/scr/jquery-3.6.0.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.js"></script>
+    <script type="text/javascript" src="./formCreados/modelos/scr/bootstrap.bundle.min.js"></script>
+    <script type="text/javascript" src="./formCreados/modelos/scr/draganddrop.js"></script>
+
+    <script src="./formCreados/modelos/scr/funcGenerales.js"></script>
+    <script src="./formCreados/modelos/scr/crearElementos.js"></script>
+
+    <!--Script js de la prueba elinv -->
+    <script src="./formCreados/prueba/estiloPrueba.js"></script>
+
+    <script type="text/javascript">
+
+    </script>
+
+</body>
+
+</html>

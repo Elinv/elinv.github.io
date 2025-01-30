@@ -1,0 +1,154 @@
+body,
+html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    background-color: silver;
+}
+
+.objMovible {
+    cursor: pointer;
+    z-index: 1;
+}
+
+.prettyprint {
+    font-size: 20px;
+}
+
+pre {
+    white-space: pre-wrap;
+    border: none;
+}
+
+.recuadro {
+    position: relative;
+    background-color: rgb(148, 43, 43);
+    border: 1px solid black;
+    width: 95%;
+    height: 670px;
+    padding-left: 2px;
+    padding-bottom: 2px;
+    padding-top: 7px;
+    margin:auto;
+    overflow: auto;
+    -webkit-box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+    box-shadow: 5px 5px 5px 0px #000000, inset 4px 4px 15px 0px #000000, 5px 5px 15px 5px rgba(0, 0, 0, 0);
+}
+
+#uno {
+    background-color: rgb(25, 25, 167);
+}
+
+#dos {
+    background-color: rgb(26, 107, 96);
+}
+
+#tres {
+    background-color: rgb(235, 111, 9);
+}
+
+#cuatro {
+    background-color: rgb(199, 164, 201);
+}
+
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+.row.content {
+    height: 450px;
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+/* Set black background color, white text and some padding */
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .sidenav {
+        height: auto;
+        padding: 15px;
+    }
+
+    .row.content {
+        height: auto;
+    }
+}
+
+/* Class para el elemento arrastrable*/
+.claseArrastrable {
+    display: flex;
+    padding: 0em;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    background-color: transparent;
+    cursor: move;
+    /*Corrige error de arrastre:
+        * Intervention]Unable to preventDefault 
+        * inside passive event listener due to 
+        * target being treated as passive. 
+        * See <URL>*/
+    -ms-touch-action: pan-y;
+    touch-action: pan-y;
+}
+
+legend {
+    color: white;
+    padding: 5px 10px;
+}
+
+input {
+    margin: 15px;
+}
+
+textarea {
+    font-family: monospace;
+    text-rendering: auto;
+    color: -internal-light-dark(black, white);
+    letter-spacing: normal;
+    word-spacing: normal;
+    line-height: normal;
+    text-transform: none;
+    text-indent: 0px;
+    text-shadow: none;
+    display: flex;
+    text-align: start;
+    appearance: auto;
+    -webkit-rtl-ordering: logical;
+    resize: auto;
+    cursor: text;
+    white-space: pre-wrap;
+    overflow-wrap: break-word;
+    background-color: -internal-light-dark(rgb(255, 255, 255), rgb(59, 59, 59));
+    column-count: initial !important;
+    margin: 0em;
+    border-width: 1px;
+    border-style: solid;
+    border-color: -internal-light-dark(rgb(118, 118, 118), rgb(133, 133, 133));
+    border-image: initial;
+    padding: 2px;
+    background: -webkit-gradient(linear, left top, left 25, from(#FFFFFF), color-stop(4%, #FFCEE7), to(#FFFFFF));
+    background: -moz-linear-gradient(top, #FFFFFF, #FFCEE7 1px, #FFFFFF 25px);
+    box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
+    -moz-box-shadow: rgba(0,0,0, 0.1) 0px 0px 8px;
+    -webkit-box-shadow: rgb(0 0 0 / 10%) 0px 0px 8px;
+}
+
+form, label, p {
+    color: white !important;
+}

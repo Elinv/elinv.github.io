@@ -1,0 +1,128 @@
+canvas {
+    font-family: "";
+    font-size: 0;
+    width: 100%;
+    object-fit: contain;
+    /* Para canvas transparent */
+    /* background:transparent; */
+}
+
+.tabs-container {
+    width: 100%;
+}
+
+div#tabs-nav {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+}
+
+div#tabs-nav a:nth-child(even) {
+    margin: 0 3px;
+}
+
+a.tabs-menu {
+    display: inline-block;
+    background-color: #1179ac;
+    font-size: 12px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    text-decoration: none;
+    border: solid 2px #1179ac;
+    border-bottom: 0;
+    border-radius: 3px 3px 0 0;
+}
+
+a.tabs-menu.tabs-menu-active {
+    background-color: #fff;
+    border: solid 2px #1179ac;
+    color: #6b6b6b;
+    border-bottom: 0;
+}
+
+.tabs-content {
+    border: solid 2px #1179ac;
+    margin-top: -2px;
+    background-color: #fff;
+    overflow: hidden;
+    line-height: 1.5;
+}
+
+.tabs-panel {
+    display: none;
+    min-height: 150px;
+    overflow: auto;
+    padding: 10px;
+    height: 550px;
+    font-size: 14px;
+}
+
+/************ CSS Animation ***********/
+
+.animated-tabs {
+    -webkit-animation-duration: 1s;
+    animation-duration: 1s;
+    -webkit-animation-fill-mode: both;
+    animation-fill-mode: both;
+}
+
+@-webkit-keyframes bounceIn {
+    0% {
+        opacity: 0;
+        -webkit-transform: scale(.3);
+    }
+
+    50% {
+        opacity: 1;
+        -webkit-transform: scale(1.05);
+    }
+
+    70% {
+        -webkit-transform: scale(.9);
+    }
+
+    100% {
+        -webkit-transform: scale(1);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(.3);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+
+    70% {
+        transform: scale(.9);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.bounceIn {
+    -webkit-animation-name: bounceIn;
+    animation-name: bounceIn;
+}
+
+.tit3dEfect {
+    text-align: left;
+    font-family: Arial Black;
+    font-weight: bold;
+    font-size: 30px;
+    color: #fff;
+    text-shadow: 0 0 10px #FFFFFF;
+}
+
+body {
+    background: rgb(2, 0, 36);
+    background: linear-gradient(90deg, rgb(5, 1, 91) 0%, rgb(41, 41, 216) 35%, rgba(0, 212, 255, 1) 100%);
+}

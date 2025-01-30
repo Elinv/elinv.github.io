@@ -1,0 +1,642 @@
+<!-- 
+    Faltaría 
+    --------
+    Agregar definicion de palabras.
+-->
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width; initial-scale=1.0; maximum-scale=1.0;" />
+    <title>AUTO CORRECTOR ELINV</title>
+    <script src="./activos/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="./activos/bootstrap.min.css">
+    <link rel="stylesheet" href="./activos/styles.css">
+    <script src="./activos/bootstrap.min.js"></script>
+    <!-- highlight-within-textarea CSS/JS -->
+    <!-- <link href="./activos/j.hl.textarea.css" rel="stylesheet">
+	<script src="./activos/j.hl.textarea.js"></script> -->
+    <!-- Favicon-->
+    <link rel="icon" type="image/x-icon" href="./activos/favicon.ico?v=1" />
+    <style>
+        /* @import url('https://fonts.googleapis.com/css2?family=Croissant+One&display=swap'); */
+        @font-face {
+            font-family: "Croissant One";
+            src: url(fonts/CroissantOne-Regular.ttf) format('woff');
+
+            /* url(fonts/Roboto.woff) 
+            format('woff'),        
+            url(fonts/Roboto.tff) 
+            format('truetype');  */
+        }
+
+        @font-face {
+            font-family: "Dancing Script";
+            src: url(fonts/DancingScript-VariableFont_wght.ttf) format('woff');
+        }
+
+        @font-face {
+            font-family: "Sometype Mono";
+            src: url(fonts/SometypeMono-Italic-VariableFont_wght.ttf) format('woff');
+        }
+
+        @font-face {
+            font-family: "Rubik Burned";
+            src: url(fonts/RubikBurned-Regular.ttf) format('woff');
+        }
+
+        @font-face {
+            font-family: "Agbalumo";
+            src: url(fonts/Agbalumo-Regular.ttf) format('woff');
+        }
+
+        @font-face {
+            font-family: "AlfaSlab One";
+            src: url(fonts/AlfaSlabOne-Regular.ttf) format('woff');
+        }
+
+        /* @font-face {
+            font-family: 'FAMILY_NAME';
+            font-style: NORMAL_OR_ITALIC;
+            font-weight: NUMERIC_WEIGHT_VALUE;
+            src: url(FONT_FILE_NAME.woff2) format('woff2');
+        } */
+    </style>
+</head>
+
+<body>
+    <div style="padding: 10px; display: flex;">
+        <aside id="sidebar">
+            <h2>Auto corrector Elinv(Claves)</h2>
+            <label class="switch" title="Recomendar Sinónimos y Antónimos">
+                <input type="checkbox" id="checkSin" checked onclick="estadoCheckSin(this);">
+                <span class="slider round"></span>
+            </label>
+            <label class="switch" title="Recomendar palabras similares">
+                <input type="checkbox" id="checkWord" checked onclick="estadoCheckWord(this);">
+                <span class="slider round"></span>
+            </label><br>
+            <!-- BOTONES -->
+            <a href="#" id="idButSave" class="butSave" title="Salvar el estado actual del editor">✏️</a>
+
+            <a href="#" id="idButSaveDown" class="butSave" title="Grabar en disco el estado actual del editor" onclick=saveTextAreaAsFile()>💾</a>
+
+            <a href="./activos/definic/index.html" title="Ir al diccionario de definiciones" target="_blank"
+                id="idDicDef" class="butSave">Dic</a>
+
+            <a href="./tools/iconos.html" title="Iconos" target="_blank" id="iconos" class="butSave">Icon</a>
+
+            <br>
+
+            <a href="./tools/css_titulos/index.html" title="Títulos Elinv" target="_blank" id="Títulos Elinv"
+                class="butSave">Tít</a>
+
+            <a href="./tools/titulos_bonitos/" title="Títulos Bonitos Elinv" target="_blank"
+                id="Títulos Bonitos Elinv" class="butSave">Tit</a>
+
+            <a href="./tools/Instagram-FB/index.html" title="Mas Letras" target="_blank" id="Mas Letras"
+                class="butSave">+ Let</a>
+
+            <a href="./TOPNG/" title="toda imágen a PNG" target="_blank" id="topng"
+                class="butSave">a PNG</a>                
+            <!-- BOTONES -->
+            <!-- contenteditable="true" -->
+            <!-- <form id="search">
+                <input type="text" name="id" value="" placeholder="Palabra a buscar" required>
+                <input ide="enviarBut" type="button" class="" value="Buscar" onclick="">
+            </form> -->
+            <div id="nav-blog" class="sidebar-item">
+
+            </div>
+
+            <div id="search" class="sidebar-item">
+                <h3>Agregar</h3>
+                <p>nuevas Claves</p>
+                <form id="formulario">
+                    <input type="text" name="id" value="" placeholder="Ingrese palabra mal escritas" required>
+                    <input type="text" name="termino" value="" placeholder="Ingrese palabra correcta" required>
+                    <input ide="enviarBut" type="button" class="btn" value="Agregar"
+                        onclick="envBut('addWord.php','formulario').then((retorna) => {info(retorna)})">
+                </form>
+            </div>
+        </aside>
+
+        <div style="clear: both"></div>
+
+        <style>
+            .button {
+                min-width: 30px;
+                height: 40px;
+                color: #fff;
+                padding: 5px 10px;
+                font-weight: bold;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                position: relative;
+                display: inline-block;
+                outline: none;
+                border-radius: 5px;
+                border: none;
+                box-shadow: inset 2px 2px 2px 0px rgba(255, 255, 255, .5), 7px 7px 20px 0px rgba(0, 0, 0, .1), 4px 4px 5px 0px rgba(0, 0, 0, .1);
+                background: #4433ff;
+            }
+
+            .button:hover {
+                background-color: #3a86ff;
+            }
+
+            .button:active {
+                top: 2px;
+            }
+        </style>
+
+        <p id="pCont">
+            <!-- ---------------------------------------- -->
+            <button class="button" onclick="tAC.style.fontFamily = 'Cursive';">I</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'Arial';">A</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'Helvetica, sans-serif';">H-S</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'Georgia, serif';">G-S</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'Croissant One, serif';">C</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'Dancing Script, serif';">D S</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'Sometype Mono, serif';">S M</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'Rubik Burned, serif';">R B</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'Agbalumo, serif';">A</button>
+            <button class="button" onclick="tAC.style.fontFamily = 'AlfaSlab One, serif';">A O</button>
+            <br>
+            <!-- ---------------------------------------- -->
+            ✮ | ✮
+            <!-- ---------------------------------------- -->
+            <button class="button" onclick="tAC.style.fontSize = '19px';">19</button>
+            <button class="button" onclick="tAC.style.fontSize = '24px';">24</button>
+            <button class="button" onclick="tAC.style.fontSize = '28px';">28</button>
+            <button class="button" onclick="tAC.style.fontSize = '36px';">36</button>
+            <!-- ---------------------------------------- -->
+            <!-- ✮ | ✮ -->
+            <!-- ---------------------------------------- -->
+            <!-- <button onclick="color();">Color</button> -->
+            <!-- ---------------------------------------- -->
+            <br>
+            <textarea id="tAC" name="tAC" cols="100" placeholder="Inicie a escribir..."></textarea>
+        </p>
+
+        <div class="dropdown open sinonimos">
+            <div style="opacity: 0.85;">
+                <input type="text" name="filter" id="filter" size="16">
+            </div>
+            <ul class="dropdown-menu" id="asesor" aria-labelledby="dropdownMenu1"
+                style="height:fit-content; overflow-y: auto; opacity: 0.85;">
+                <li class="list-group-item list-group-item-warning"><a href="#">Ayudante</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a href="#">Sinónimos</a></li>
+                <li><a href="#">Antónimos</a></li>
+                <li role="separator" class="divider"></li>
+                <li class="list-group-item list-group-item-warning"><a href="#">
+                        Elinv @ 2023</a></li>
+            </ul>
+        </div>
+
+        <div class="dropdown open palabras">
+            <ul class="dropdown-menu" id="recomendaciones" aria-labelledby="dropdown-menu1"
+                style="height:fit-content; overflow-y: auto; opacity: 0.85;">
+                <li><a href="#">Recomendaciones</a></li>
+                <li role="separator" class="divider"></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <script src="./activos/cargador.js"></script>
+    <script src="./activos/varios.js"></script>
+    <script src="./activos/addSinonimos.js"></script>
+    <!-- Sinónimos y Antonimos -->
+    <script src="./activos/sinant/general.js"></script>
+    <script src="./activos/sinant/general1.js"></script>
+    <script src="./activos/sinant/general2.js"></script>
+    <script src="./activos/sinant/general3.js"></script>
+    <script src="./activos/sinant/general4.js"></script>
+    <script src="./activos/sinant/general5.js"></script>
+    <script src="./activos/sinant/general6.js"></script>
+    <script src="./activos/sinant/general7.js"></script>
+    <script src="./activos/sinant/general8.js"></script>
+    <script src="./activos/sinant/general9.js"></script>
+    <script src="./activos/sinant/general10.js"></script>
+    <script src="./activos/sinant/general11.js"></script>
+    <script src="./activos/sinant/general12.js"></script>
+    <script src="./activos/sinant/general13.js"></script>
+    <!-- Definiciones -->
+    <!-- <script src="./activos/definic/definiciones.js"></script> -->
+    <!-- Letras -->
+    <script src="./activos/letras/letraA.js"></script>
+    <script src="./activos/letras/letraB.js"></script>
+    <script src="./activos/letras/letraC.js"></script>
+    <script src="./activos/letras/letraD.js"></script>
+    <script src="./activos/letras/letraE.js"></script>
+    <script src="./activos/letras/letraF.js"></script>
+    <script src="./activos/letras/letraG.js"></script>
+    <script src="./activos/letras/letraH.js"></script>
+    <script src="./activos/letras/letraI.js"></script>
+    <script src="./activos/letras/letraJ.js"></script>
+    <script src="./activos/letras/letraK.js"></script>
+    <script src="./activos/letras/letraL.js"></script>
+    <script src="./activos/letras/letraM.js"></script>
+    <script src="./activos/letras/letraN.js"></script>
+    <script src="./activos/letras/letraO.js"></script>
+    <script src="./activos/letras/letraP.js"></script>
+    <script src="./activos/letras/letraQ.js"></script>
+    <script src="./activos/letras/letraR.js"></script>
+    <script src="./activos/letras/letraS.js"></script>
+    <script src="./activos/letras/letraT.js"></script>
+    <script src="./activos/letras/letraU.js"></script>
+    <script src="./activos/letras/letraV.js"></script>
+    <script src="./activos/letras/letraW.js"></script>
+    <script src="./activos/letras/letraX.js"></script>
+    <script src="./activos/letras/letraY.js"></script>
+    <script src="./activos/letras/letraZ.js"></script>
+    <!-- Fin letras -->
+
+    <script>
+        // Diccionario
+        var dict = new Object();
+
+        // create an array
+        var tArr = [];
+
+        //Pos array de texto
+        let posTArr = tArr.length - 1;
+
+        function loadXMLtoOBJECT(dicFile) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () {
+                myFunction(this);
+            };
+            xhttp.open("GET", dicFile);
+            xhttp.send();
+        }
+
+        function myFunction(xml) {
+            const xmlDoc = xml.responseXML;
+            const x = xmlDoc.getElementsByTagName("TERMINOS");
+            for (let i = 0; i < x.length; i++) {
+                dict[x[i].getElementsByTagName("ID")[0].innerHTML] =
+                    x[i].getElementsByTagName("DEFINICION")[0].innerHTML;
+                document.getElementById('nav-blog').innerHTML += x[i].getElementsByTagName("ID")[0].innerHTML + ' ';
+            }
+        }
+
+        document.getElementById("pCont").onkeydown = function () {
+            const key = event.key;
+            //event.preventDefault()
+            $("#idButSave").removeClass("butSave");
+            $("#idButSave").addClass("butSaveRed");
+
+            tArr.push(document.getElementById("tAC").value);
+            // posición en el array
+            posTArr = tArr.length - 1;
+            // if (key === " " || key === "Spacebar") {
+            //     llenar(sino, anto, 'asesor');
+            //     sino = [];
+            //     anto = [];
+            //     return;
+            // }
+            // función
+            wordReplace();
+            //}
+        };
+
+        const pegarTA = (text) => {
+            text = text.textContent.trim() + ', ';
+            // Get the current cursor position
+            const position = tAC.selectionStart;
+
+            // Get the text before and after the cursor position
+            const before = tAC.value.substring(0, position);
+            const after = tAC.value.substring(position, tAC.value.length);
+
+            // Insert the new text at the cursor position
+            tAC.value = before + text + after;
+
+            // Set the cursor position to after the newly inserted text
+            tAC.selectionStart = tAC.selectionEnd = position + text.length;
+        };
+
+        const pegarTA1 = (text) => {
+            text = text.textContent.trim() + ', ';
+            // Get the current cursor position
+            const position = tAC.selectionStart;
+
+            // Get the text before and after the cursor position
+            const before = tAC.value.substring(0, position);
+            const after = tAC.value.substring(position, tAC.value.length);
+
+            // Insert the new text at the cursor position
+            tAC.value = before + text + after;
+
+            // Set the cursor position to after the newly inserted text
+            tAC.selectionStart = tAC.selectionEnd = position + text.length;
+        };
+
+        var word = '';
+
+        // aquí cargamos los sinónimos y antónimos con el archivo general.js
+        let generales = SinA.concat(SinAb);
+        generales = generales.concat(SinAc);
+        generales = generales.concat(SinAd);
+        generales = generales.concat(SinAe);
+        generales = generales.concat(SinAf);
+        generales = generales.concat(SinAg);
+        generales = generales.concat(SinAh);
+        generales = generales.concat(SinAi);
+        generales = generales.concat(SinAj);
+        generales = generales.concat(SinAk);
+        generales = generales.concat(SinAl);
+        generales = generales.concat(SinAm);
+        generales = generales.concat(SinAn);
+
+        function wordReplace(t = 0) {
+            let taR = document.getElementById("tAC");
+            let cPos = GetCaretPosition(taR);
+            //Si se presionó tab
+            if (t === 1) {
+                if (taR.value.indexOf(" ", cPos) != -1) {
+                    cPos = taR.value.indexOf(" ", cPos);
+                }
+            }
+            word = returnWord(taR.value, cPos).toLowerCase().trim();
+            // Corrige barra espaciadora y teclAUTO CORRECTOR ELINVa retroceso
+            if (word === '') {
+                return;
+            }
+            let w = word.split("\n");
+            word = w[w.length - 1];
+
+            // agregamos sinonimos
+            let ulAnt = document.getElementById('asesor');
+            ulAnt.innerHTML = `<li><a href="#"></a></li>`
+
+            // Desde aquí recomendamos sinónimos y antónimos
+            if (checkSin.checked == true) {
+                let indGral = generales.length;
+                let indFor = 0;
+                if (word.length >= 3) {
+                    for (let indFor = 0; indFor < indGral; indFor++) {
+                        if (salir == true) {
+                            salir = false;
+                            break;
+                        }
+                        addSin(generales[indFor], 'asesor', dict[word], word);
+                    }
+                }
+            }
+
+            // Recomendaciones de palabras del diccionario
+            if (checkWord.checked == true) {
+                let recomendar = (word, letra) => {
+                    if (word.length >= 3) {
+                        filtered = letra.filter(function (str) { return str.includes(word); });
+                        addPalabra(filtered, 'recomendaciones');
+                    }
+                };
+                // vamos recomendando a medida que se escribe
+                switch (word.charAt(0).toLowerCase()) {
+                    case 'a':
+                        recomendar(word, letraa);
+                        break;
+                    case 'b':
+                        recomendar(word, letrab);
+                        break;
+                    case 'c':
+                        recomendar(word, letrac);
+                        break;
+                    case 'd':
+                        recomendar(word, letrad);
+                        break;
+                    case 'e':
+                        recomendar(word, letrae);
+                        break;
+                    case 'f':
+                        recomendar(word, letraf);
+                        break;
+                    case 'g':
+                        recomendar(word, letrag);
+                        break;
+                    case 'h':
+                        recomendar(word, letrah);
+                        break;
+                    case 'i':
+                        recomendar(word, letrai);
+                        break;
+                    case 'j':
+                        recomendar(word, letraj);
+                        break;
+                    case 'k':
+                        recomendar(word, letrak);
+                        break;
+                    case 'l':
+                        recomendar(word, letral);
+                        break;
+                    case 'm':
+                        recomendar(word, letram);
+                        break;
+                    case 'n':
+                        recomendar(word, letran);
+                        break;
+                    case 'o':
+                        recomendar(word, letrao);
+                        break;
+                    case 'p':
+                        recomendar(word, letrap);
+                        break;
+                    case 'q':
+                        recomendar(word, letraq);
+                        break;
+                    case 'r':
+                        recomendar(word, letrar);
+                        break;
+                    case 's':
+                        recomendar(word, letras);
+                        break;
+                    case 't':
+                        recomendar(word, letrat);
+                        break;
+                    case 'u':
+                        recomendar(word, letrau);
+                        break;
+                    case 'v':
+                        recomendar(word, letrav);
+                        break;
+                    case 'w':
+                        recomendar(word, letraw);
+                        break;
+                    case 'x':
+                        recomendar(word, letrax);
+                        break;
+                    case 'y':
+                        recomendar(word, letray);
+                        break;
+                    case 'z':
+                        recomendar(word, letraz);
+                        break;
+                    default:
+                        console.log(`Opción inválida!`);
+                };
+            }
+
+            if (word != null) {
+                if (dict[word] != undefined) {
+                    let l = word.length;
+                    let r = dict[word];
+                    let rL = r.length;
+                    taR.focus();
+                    taR.setSelectionRange(cPos - l, cPos);
+                    taR.setRangeText(r);
+                    taR.setSelectionRange(cPos + rL, cPos + rL - l);
+                }
+            }
+        }
+
+        function returnWord(text, caretPos) {
+            let preText = text.substring(0, caretPos);
+            if (preText.indexOf(" ") > 0) {
+                let words = preText.split(" ");
+                // Quitamos espacios y saltos de lineas si existen.
+                let pal = words[words.length - 1].trim();
+                return pal;
+            } else {
+                return preText;
+            }
+        }
+
+        function GetCaretPosition(ctrl) {
+            let CaretPos = 0; // IE Support
+            if (document.selection) {
+                ctrl.focus();
+                let Sel = document.selection.createRange();
+                Sel.moveStart("character", -ctrl.value.length);
+                CaretPos = Sel.text.length;
+            }
+            // Firefox support
+            else if (ctrl.selectionStart || ctrl.selectionStart == "0")
+                CaretPos = ctrl.selectionStart;
+            return CaretPos;
+        }
+
+        // para la parte del móvil
+        var input = document.getElementById("tAC"),
+            oldValue,
+            newValue,
+            difference = function (value1, value2) {
+                var output = [];
+                for (i = 0; i < value2.length; i++) {
+                    if (value1[i] !== value2[i]) {
+                        output.push(value2[i]);
+                    }
+                }
+                return output.join("");
+            };
+    </script>
+
+    <script src="./activos/textAreaDropdown.js"></script>
+
+
+    <script>
+        // Aquí filtramos dentro de las recomendaciones
+        document.querySelector('#filter').addEventListener('keyup', filterNames);
+        function filterNames(e) {
+            const text = e.target.value.toLowerCase();
+            document.querySelectorAll('.selectable').forEach(
+                function (name) {
+                    let item = name.firstChild.textContent;
+                    if (item.toLowerCase().indexOf(text) != -1) {
+                        name.style.display = 'block';
+                    } else {
+                        name.style.display = 'none';
+                    }
+                }
+            );
+        }
+    </script>
+
+    <script>
+        function estadoCheckSin(element) {
+            let divSin = document.getElementsByClassName("sinonimos");
+            if (element.checked == false) {
+                divSin[0].style.display = "none";
+            } else {
+                divSin[0].style.display = "block";
+            }
+        }
+        function estadoCheckWord(element) {
+            let divWord = document.getElementsByClassName("palabras");
+            if (element.checked == false) {
+                divWord[0].style.display = "none";
+            } else {
+                divWord[0].style.display = "block";
+            } $('.butSave').css('background-color', '#33bdef');
+        }
+
+        window.onload = function () {
+            setTimeout(() => {
+                // De acuerdo al checkbox mostramos u ocultamos recomendaciones al iniciar
+                let divSin = document.getElementsByClassName("sinonimos");
+                if (checkSin.checked == false) {
+                    divSin[0].style.display = "none";
+                } else {
+                    divSin[0].style.display = "block";
+                }
+
+                let divword = document.getElementsByClassName("palabras");
+                if (checkWord.checked == false) {
+                    divword[0].style.display = "none";
+                } else {
+                    divword[0].style.display = "block";
+                }
+            }, 100);
+        };
+    </script>
+
+    <script>
+        $(function () {
+            $('textarea').each(function () {
+                $(this).val(localStorage.getItem($(this).attr('hour')));
+            });
+            $('#idButSave').on('click', function () {
+                $('textarea').each(function () {
+                    var hour = $(this).attr('hour');
+                    var plans = $(this).val();
+                    localStorage.setItem(hour, plans);
+                });
+                $("#idButSave").removeClass("butSaveRed");
+                $("#idButSave").addClass("butSave");
+            });
+        });
+    </script>
+
+    <script>
+        function onInputRegexAgain(input) {
+            return /chile|ecuador|peru/gi;
+        }
+        function color() {
+            $('textarea.again').highlightWithinTextarea({ onInput: onInputRegexAgain });
+        }
+    </script>
+
+    <script>
+        // salvar a disco contenido de textarea
+        function saveTextAreaAsFile() {
+            //título del archivo
+            let titFile = document.getElementById("tAC").value.split('\n');
+            let firstLine = titFile[0];
+            // Contenido del archivo para grabar a disco
+            let textcontent = document.getElementById("tAC").value;
+            let downloadableLink = document.createElement('a');
+            downloadableLink.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(textcontent));
+            downloadableLink.download = firstLine + ".txt";
+            document.body.appendChild(downloadableLink);
+            downloadableLink.click();
+            document.body.removeChild(downloadableLink);
+        }
+    </script>
+</body>
+
+</html>
