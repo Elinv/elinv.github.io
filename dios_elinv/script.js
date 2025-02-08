@@ -1,5 +1,7 @@
 const videoUrls = [
+    './audio/voz/poemasvacios/audio.m3u8t',
     './audio/bichocomplicado/audio.m3u8t',
+    './audio/voz/situvieraqueexplicartemiamor/audio.m3u8t',    
     './audio/churuchuru/audio.m3u8t',
     './audio/cuandollego/audio.m3u8t',
     './audio/cuandolollenastedeamor/audio.m3u8t',
@@ -50,7 +52,7 @@ const videoUrls = [
     './audio/siestacontigo/audio.m3u8t',   
 ];
 videoUrls.sort();
-let currentVideoIndex = Math.floor(Math.random() * 49);
+let currentVideoIndex = Math.floor(Math.random() * 51);
 const video = document.getElementById('videoPlayer');
 function loadVideo(index) {
     const videoUrl = videoUrls[index];
