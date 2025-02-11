@@ -35,7 +35,7 @@ const videoUrls = [
     './audio/nahaantes/audio.m3u8t',
     './audio/noesningunanovedad/audio.m3u8t',
     './audio/palabrasmuertas/audio.m3u8t',
-    './audio/quenecesitohttp://localhost:8000//audio.m3u8t',
+    './audio/quenecesito/audio.m3u8t',
     './audio/queseael/audio.m3u8t',
     './audio/quetequiero/audio.m3u8t',    
     './audio/quieroescaparirme/audio.m3u8t',
