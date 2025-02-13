@@ -79,3 +79,27 @@ video.addEventListener('ended', function () {
     currentVideoIndex = (currentVideoIndex + 1) % videoUrls.length;
     loadVideo(currentVideoIndex);
 });
+
+
+function detectDispSize() {
+    const anchoPantalla = window.innerWidth;
+
+    if (anchoPantalla < 768) { // Umbral común para dispositivos móviles
+        // Seleccionamos el elemento por su ID
+        var miDiv = document.getElementById("seccionBienvenida");
+        // Cambiamos la propiedad backgroundImage
+        miDiv.style.backgroundImage = "url('./img/elinvPorQwenMovil.jpg')";
+        return "móvil";
+    } else {
+        // Seleccionamos el elemento por su ID
+        var miDiv = document.getElementById("seccionBienvenida");
+        // Cambiamos la propiedad backgroundImage
+        miDiv.style.backgroundImage = "url('./img/elinvPorQwen.jpg')";
+        return "pc";
+    }
+}
+
+// Llamada a la función
+window.onload = function () {
+    const tipoDispositivoPorTamaño = detectDispSize();
+}
