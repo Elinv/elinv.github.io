@@ -1,4 +1,5 @@
 const videoUrls = [
+    './audio/aladecarton/audio.m3u8t',
     './audio/voz/poemasvacios/audio.m3u8t',
     './audio/bichocomplicado/audio.m3u8t',
     './audio/voz/situvieraqueexplicartemiamor/audio.m3u8t',    
@@ -51,23 +52,81 @@ const videoUrls = [
     './audio/yesteencuentrodeprimavera/audio.m3u8t',
     './audio/siestacontigo/audio.m3u8t',   
 ];
-videoUrls.sort();
-let currentVideoIndex = Math.floor(Math.random() * 51);
+const suena = [
+    'Ala De Cartón',
+    'Temporada De Poemas Vacíos',
+    'Bicho Complicado',
+    'Si Tuviera Que Explicarte Mi Amor',
+    'Churu Churu Churu',
+    'Mi Voz En Tí',
+    'Cuando Lo Llenaste De Amor',
+    'Dolor Es Dolores',
+    'Enciende Tu Futuro',
+    'En Mi Otoño',
+    'Eres Una Poesía Única',
+    'Estas Enamorada',
+    'Felicidad De Luna Llena',
+    'Fuera De Mi Radio',
+    'Huyendo Del Jardín',
+    'Id',
+    'Ja Ja Ja',
+    'Join',
+    'Te Dejo Un Consejo Josefo',
+    'La Debilidad De Dios',
+    'La Única Que Me Interesa',
+    'La Única Que Me Interesa (Instrumental)',  
+    'Lejos De Vivir',
+    'Loco Por Correr',
+    'Lo Que Escribo',
+    'Me Cuesta Tu Amor',
+    'Me Jode',
+    'Mis Heridas Sin Ti',  
+    'Misterio Diario',
+    'Mi Única Novia',
+    'Mi Única Novia (Instrumental)',
+    'Mix 1',
+    'Mix 2',
+    'Naha',  
+    'Naha Antes',
+    'No Es Ninguna Novedad',
+    'Palabras Muertas',
+    'Que Necesito',
+    'Que Sea Él',
+    'Que Te Quiero',    
+    'Quiero Escaparme',
+    'Rock De Don Nadie',   
+    'Rock Del Recaudador',
+    'Rock Él',   
+    'Rock Él (Instrumental)',
+    'Rosas',   
+    'Sin Tom Ni Son',
+    'Solo Un Giro',   
+    'Temporada De Poemas Vacíos',
+    'Tú Y Tu Luz',   
+    'Y Este Encuentro De Primavera',
+    'Siesta Contigo',   
+];
+let tot = videoUrls.length;
+//videoUrls.sort();
+let currentVideoIndex = Math.floor(Math.random() * tot);
 const video = document.getElementById('videoPlayer');
 function loadVideo(index) {
     const videoUrl = videoUrls[index];
+    //const audio = videoUrl.split('/')[2].trim();
     if (Hls.isSupported()) {
         const hls = new Hls();
         hls.loadSource(videoUrl);
         hls.attachMedia(video);
         hls.on(Hls.Events.MANIFEST_PARSED, function () {
-            console.log(`Cargando video ${index + 1}: ${videoUrl}`);
+            document.getElementById('estas').innerText = `Suena: ${suena[currentVideoIndex]}`;
+            //console.log(`Cargando video ${index + 1}: ${videoUrl}`);
             video.play();
         });
     } else if (video.canPlayType('application/vnd.apple.mpegurl')) {
         video.src = videoUrl;
         video.addEventListener('loadedmetadata', function () {
-            console.log(`Cargando video ${index + 1}: ${videoUrl}`);
+            document.getElementById('estas').innerText = `Suena: ${suena[currentVideoIndex]}`;
+            //console.log(`Cargando video ${index + 1}: ${videoUrl}`);
             video.play();
         });
     } else {
